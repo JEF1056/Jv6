@@ -42,18 +42,16 @@
 						<!-- Guilds -->
 							<article id="guilds" class="panel">
 								<header>
-									<h2>Work</h2>
+									<h2>Servers</h2>
 								</header>
 								<p>
-									Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit.
-									Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-									luctus elit eget interdum.
+									Click any of the icons below to change Jade's settings in that server!
 								</p>
 								<section>
 									<div class="row">
                                         {% for guild in guilds %}
                                             <div class="col-4 col-6-medium col-12-small">
-                                                <a href="#" class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=2048 alt=""></a>
+                                                <a href="#settings?guild={{guild.id}}" class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=2048 alt=""></a>
                                             </div>
                                         {% endfor %}
 									</div>
@@ -93,7 +91,7 @@
 				<!-- Footer -->
 					<div id="footer">
 						<ul class="copyright">
-							<li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							<li>&copy; Jade AI</li><li>Design & Development: <a href="http://j-fan.ml">Jess Edmund Fan</a></li>
 						</ul>
 					</div>
 			</div>
