@@ -33,7 +33,8 @@ def callback():
 @requires_authorization
 def data():
     user = discord.fetch_user()
-    print(vars(user))
+    guilds=discord.fetch_guilds()
+    print(vars(guilds))
     return render_template("data.html", avatar_url=user.avatar_url, name=user.name)
 
 
