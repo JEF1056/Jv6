@@ -42,7 +42,7 @@ def data():
         if str(guild.id)+".p" in os.listdir("../hist"):
             guilds_data += f"""
             <div class="col-4 col-6-medium col-12-small">
-			    <a href="#" class="image fit"><img src=https://cdn.discordapp.com/icons/{guild.id}/{guild.icon}.png alt=""></a>
+			    <a href="#" class="image fit"><img src=https://cdn.discordapp.com/icons/{guild.id}/{guild.icon_hash}.png alt=""></a>
 			</div>
             """
     return render_template("data.html", avatar_url=user.avatar_url, name=user.name, guilds=guilds_data)
