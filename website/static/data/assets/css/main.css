@@ -939,7 +939,13 @@ input, select, textarea {
 				}
 
 				.row > .col-12-medium {
-					width: 100%;
+                    width: 100%;
+                    visibility: visible;
+				}
+
+                row > .col-12-hidden {
+                    width: 100%;
+                    visibility: hidden;
 				}
 
 				.row > .off-12-medium {
