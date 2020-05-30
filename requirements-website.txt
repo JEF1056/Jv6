@@ -1,0 +1,5 @@
+Flask-Discord
+cachetools
+cryptography
+pyopenssl
+waitress

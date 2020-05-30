@@ -1,0 +1,10 @@
+torch
+pytorch-ignite
+transformers==2.5.1
+tensorboardX==1.8
+tensorflow
+tqdm
+statistics
+
+# if you want to use fp16 training. uncomment the following.
+# apex

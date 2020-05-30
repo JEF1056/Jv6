@@ -1,0 +1,7 @@
+torch
+pytorch-ignite
+transformers==2.5.1
+dblpy
+discord.py
+nltk
+discord-webhook
