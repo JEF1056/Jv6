@@ -1444,25 +1444,25 @@ input, select, textarea {
         align-self: center;
 	}
 
-		table.default tbody tr {
-			border-bottom: solid 1px #f4f4f4;
-		}
+	table tbody tr {
+		border-bottom: solid 1px #f4f4f4;
+	}
 
-		table.default td {
-            padding: 0.5em 1em 0.5em 1em;
-            text-align: center;
-		}
+	table td {
+        padding: 0.5em 1em 0.5em 1em;
+        text-align: center;
+	}
 
-		table.default th {
-			text-align: center;
-			font-weight: 400;
-            padding: 0.5em 1em 0.5em 1em;
-            border-bottom: solid 1px #333;
-		}
-
-		table.default thead {
-			border-bottom: solid 2px #f4f4f4;
-		}
+	table th {
+		text-align: center;
+		font-weight: 400;
+        padding: 0.5em 1em 0.5em 1em;
+        border-bottom: solid 1px #333;
+    }
+    
+    table thead {
+	    border-bottom: solid 2px #f4f4f4;
+	}
 
 /* Form */
 
