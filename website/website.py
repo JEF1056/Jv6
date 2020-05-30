@@ -45,7 +45,7 @@ def data():
 			    <a href="#" class="image fit"><img src=https://cdn.discordapp.com/icons/{guild.id}/{guild.icon}.png alt=""></a>
 			</div>
             """
-    return render_template("data.html", avatar_url=user.avatar_url, name=user.name guilds=guilds_data)
+    return render_template("data.html", avatar_url=user.avatar_url, name=user.name, guilds=guilds_data)
 
 
 if __name__ == "__main__":
