@@ -44,8 +44,8 @@ def data():
             guilds_data.append(guild)
             guild_settings[guild.id]=(pickle.load(open("../hist/"+str(guild.id)+".p", "rb")))
             guild_settings[guild.id][1]=vars(guild_settings[guild.id][1])
-
-    guild_settings=json.dumps(guild_settings).replace("&#34;","'")
+    guild_settings=json.dumps(guild_settings).replace("'","")
+    print(guild_settings)
 
     return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", name=user.name, guilds=guilds_data, guild_settings=guild_settings)
 
