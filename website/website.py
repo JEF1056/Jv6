@@ -2,6 +2,7 @@ from flask import Flask, redirect, url_for, render_template
 from flask_discord import DiscordOAuth2Session, requires_authorization
 from waitress import serve
 import json
+import pickle
 import os
 
 app = Flask(__name__)
