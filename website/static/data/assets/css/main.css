@@ -1448,11 +1448,12 @@ input, select, textarea {
 		}
 
 		table.default td {
-			padding: 0.5em 1em 0.5em 1em;
+            padding: 0.5em 1em 0.5em 1em;
+            border-bottom: solid 1px #333;
 		}
 
 		table.default th {
-			text-align: left;
+			text-align: center;
 			font-weight: 400;
 			padding: 0.5em 1em 0.5em 1em;
 		}
