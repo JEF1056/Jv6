@@ -29,6 +29,13 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;}
 
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
 body {
 	line-height: 1;
 }
@@ -182,7 +189,11 @@ input, select, textarea {
 		}
 
 		.row > .col-9 {
-			width: 75%;
+            width: 75%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
 		}
 
 		.row > .off-9 {
@@ -938,14 +949,8 @@ input, select, textarea {
 					margin-left: 91.66667%;
 				}
 
-				.row > .col-12-medium {
+                row > .col-12-medium {
                     width: 100%;
-                    visibility: visible;
-				}
-
-                row > .col-12-hidden {
-                    width: 100%;
-                    visibility: hidden;
 				}
 
 				.row > .off-12-medium {
@@ -1118,7 +1123,11 @@ input, select, textarea {
 				}
 
 				.row > .col-3-small {
-					width: 25%;
+                    width: 25%;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 50%;
 				}
 
 				.row > .off-3-small {
