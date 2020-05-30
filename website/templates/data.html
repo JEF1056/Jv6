@@ -1,24 +1,4 @@
 <!DOCTYPE HTML>
-<script>
-function getCookie(name) {
-    // Split cookie string and get all individual name=value pairs in an array
-    var cookieArr = document.cookie.split(";");
-    
-    // Loop through the array elements
-    for(var i = 0; i < cookieArr.length; i++) {
-        var cookiePair = cookieArr[i].split("=");
-        
-        /* Removing whitespace at the beginning of the cookie name
-        and compare it with the given string */
-        if(name == cookiePair[0].trim()) {
-            // Decode the cookie value and return
-            return decodeURIComponent(cookiePair[1]);
-        }
-    }
-    // Return null if not found
-    return "No Guild Selected";
-}
-</script>
 <html>
 	<head>
 		<title>JadeAI : Control Panel</title>
@@ -66,7 +46,7 @@ function getCookie(name) {
 									<div class="row">
                                         {% for guild in guilds %}
                                             <div class="col-4 col-6-medium col-12-small">
-                                                <a href="javascript:document.cookie = 'guild={{guild.id}}'; document.cookie='guildname={{guild.name}}'; window.location.replace('#settings');"; class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=300 alt=""></a>
+                                                <a href="javascript:document.cookie = 'guild={{guild.id}}'; document.cookie='guildname={{guild.name}}'; window.location.replace('#settings');"; class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 alt=""></a>
                                             </div>
                                         {% endfor %}
 									</div>
