@@ -15,4 +15,4 @@ function getCookie(name) {
     }
     // Return null if not found
     return "No Guild Selected";
-}
+};
