@@ -45,8 +45,6 @@ def data():
             guild_settings[int(guild.id)]=(pickle.load(open("../hist/"+str(guild.id)+".p", "rb")))
             guild_settings[int(guild.id)][1]=vars(guild_settings[guild.id][1])
     guild_settings=json.dumps(guild_settings)
-    for gu in guilds_data:
-        print(gu.id)
     
     return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", name=user.name, guilds=guilds_data, guild_settings=guild_settings)
 
