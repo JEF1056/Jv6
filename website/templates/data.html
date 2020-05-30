@@ -51,7 +51,7 @@
 									<div class="row">
                                         {% for guild in guilds %}
                                             <div class="col-4 col-6-medium col-12-small">
-                                                <a href="javascript:document.cookie = 'guild={{guild.id}}'; window.location = '#settings';"; class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=2048 alt=""></a>
+                                                <a href="javascript:document.cookie = 'guild={{guild.id}}'; window.location.href = '#settings';"; class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=2048 alt=""></a>
                                             </div>
                                         {% endfor %}
 									</div>
