@@ -1,9 +1,24 @@
 <!DOCTYPE HTML>
-<!--
-	Astral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<script>
+    function getCookie(name) {
+    // Split cookie string and get all individual name=value pairs in an array
+    var cookieArr = document.cookie.split(";");
+    
+    // Loop through the array elements
+    for(var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        
+        /* Removing whitespace at the beginning of the cookie name
+        and compare it with the given string */
+        if(name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    // Return null if not found
+    return "No Guild Selected";
+    }
+</script>
 <html>
 	<head>
 		<title>JadeAI : Control Panel</title>
@@ -51,7 +66,7 @@
 									<div class="row">
                                         {% for guild in guilds %}
                                             <div class="col-4 col-6-medium col-12-small">
-                                                <a href="javascript:document.cookie = 'guild={{guild.id}}'; window.location.replace('#settings');"; class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=2048 alt=""></a>
+                                                <a href="javascript:document.cookie = 'guild={{guild.id}}, guildname={{guild.name}}'; window.location.replace('#settings');"; class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=2048 alt=""></a>
                                             </div>
                                         {% endfor %}
 									</div>
@@ -61,25 +76,23 @@
 						<!-- Settings -->
 							<article id="settings" class="panel">
 								<header>
-									<h2>Contact Me</h2>
+                                    <h2 id="Guild Name"></h2>
+                                    <script>document.getElementById("Guild Name").innerHTML = getCookie("guildname");</script>
 								</header>
 								<form action="#" method="post">
 									<div>
 										<div class="row">
 											<div class="col-6 col-12-medium">
-												<input type="text" name="name" placeholder="Name" />
+												<input type="text" name="Setting" placeholder="Name" />
 											</div>
 											<div class="col-6 col-12-medium">
-												<input type="text" name="email" placeholder="Email" />
+												<input type="text" name="Setting" placeholder="Email" />
 											</div>
 											<div class="col-12">
-												<input type="text" name="subject" placeholder="Subject" />
+												<input type="text" name="Setting" placeholder="Subject" />
 											</div>
 											<div class="col-12">
-												<textarea name="message" placeholder="Message" rows="6"></textarea>
-											</div>
-											<div class="col-12">
-												<input type="submit" value="Send Message" />
+												<input type="submit" value="Commit Settings" />
 											</div>
 										</div>
 									</div>
