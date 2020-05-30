@@ -1876,9 +1876,9 @@ input, select, textarea {
 	#wrapper {
 		width: 45em;
 		margin: 0 auto;
-		min-height: 90vh;
+		min-height: 100vh;
 		max-width: 100%;
-		padding: 4em 0;
+		padding: 2em 0;
 		display: -moz-flex;
 		display: -webkit-flex;
 		display: -ms-flex;
@@ -1908,7 +1908,7 @@ input, select, textarea {
 		@media screen and (max-width: 1280px) {
 
 			#wrapper {
-				padding: 3em 0;
+				padding: 2em 0;
 				max-width: calc(100% - 6em);
 			}
 
