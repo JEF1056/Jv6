@@ -1,4 +1,7 @@
 function setGuild(guild_id, guild_name, guild_settings) {
+    console.log(guild_id)
+    console.log(guild_name)
+    console.log(guild_settings)
     document.getElementById('Guild Name').innerHTML = guild_name
     document.getElementById("temperature").innerHTML = guild_settings[guild_id.toString()][1]["temperature"];
     document.getElementById("top_k").innerHTML = guild_settings[guild_id.toString()][1]["top_k"];
