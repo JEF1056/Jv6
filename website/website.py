@@ -36,7 +36,6 @@ def callback():
 def data():
     user = discord.fetch_user()
     guilds=discord.fetch_guilds()
-    print(guilds)
     guilds_data=""
     for guild in guilds:
         if str(guild.id)+".p" in os.listdir("../hist"):
@@ -45,6 +44,7 @@ def data():
 			    <a href="#" class="image fit"><img src=https://cdn.discordapp.com/icons/{guild.id}/{guild.icon_hash}.png alt=""></a>
 			</div>
             """
+    print(guilds_data)
     return render_template("data.html", avatar_url=user.avatar_url, name=user.name, guilds=guilds_data)
 
 
