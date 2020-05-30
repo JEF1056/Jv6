@@ -49,7 +49,7 @@
 									<div class="row">
                                         {% for guild in guilds %}
                                             <div class="col-4 col-6-medium col-12-small">
-                                                <a href="javascript:guild_id={{guild.id}}; document.getElementById('Guild Name').innerHTML = encodeURI({{guild.name}}); window.location.replace('#settings');"; class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 alt=""></a>
+                                                <a href="javascript:guild_id={{guild.id}}; document.getElementById('Guild Name').innerHTML = &quot{{guild.name}}&quot; window.location.replace('#settings');"; class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 alt=""></a>
                                             </div>
                                         {% endfor %}
 									</div>
@@ -59,8 +59,7 @@
 						<!-- Settings -->
 							<article id="settings" class="panel">
 								<header>
-                                    <h2 id="Guild Name"></h2>
-                                    <script>document.getElementById("Guild Name").innerHTML = getCookie("guildname");</script>
+                                    <h2 id="Guild Name">No Guild Selected</h2>
 								</header>
 								<form action="#" method="post">
 									<div>
