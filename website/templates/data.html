@@ -1,9 +1,5 @@
 <!DOCTYPE HTML>
 <script src="/static/data/assets/js/cookies.js"></script>
-<script>
-    var guild_name=getCookie("guild_name");
-    var guild_id=getCookie("guild_id");
-</script>
 <html>
 	<head>
 		<title>JadeAI : Control Panel</title>
@@ -51,7 +47,7 @@
 									<div class="row">
                                         {% for guild in guilds %}
                                             <div class="col-4 col-6-medium col-12-small">
-                                                <a href="javascript:guild_name='{{guild.name}}'; guild_id='{{guild.id}}'; window.location.replace('#settings');"; class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 alt=""></a>
+                                                <a href="javascript:document.cookie = 'guild_id={{guild.id}}'; document.cookie='guild_name={{guild.name}}'; document.getElementById('Guild Name').innerHTML = getCookie('guildname'); window.location.replace('#settings');"; class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 alt=""></a>
                                             </div>
                                         {% endfor %}
 									</div>
@@ -62,8 +58,7 @@
 							<article id="settings" class="panel">
 								<header>
                                     <h2 id="Guild Name"></h2>
-                                    <script>document.getElementById("Guild Name").innerHTML = guild_name</script>
-                                    console.log(guild_name)
+                                    <script>document.getElementById("Guild Name").innerHTML = getCookie("guildname");</script>
 								</header>
 								<form action="#" method="post">
 									<div>
