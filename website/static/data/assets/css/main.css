@@ -943,6 +943,11 @@ input, select, textarea {
                     visibility: visible;
 				}
 
+                row > .col-12-hidden {
+                    width: 100%;
+                    visibility: hidden;
+				}
+
 				.row > .off-12-medium {
 					margin-left: 100%;
 				}
