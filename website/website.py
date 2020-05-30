@@ -38,11 +38,13 @@ def data():
     user = discord.fetch_user()
     guilds=discord.fetch_guilds()
     guilds_data=[]
+    guild_settings=[]
     for guild in guilds:
         if str(guild.id)+".p" in os.listdir("../hist"):
             guilds_data.append(guild)
-    print(guilds_data)
-    return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", name=user.name, guilds=guilds_data)
+            guild_settings.append(pickle.load(open("hist/"+str(guild.id)+".p", "rb")))
+
+    return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", name=user.name, guilds=guilds_data, guild_settings=guild_settings)
 
 
 if __name__ == "__main__":

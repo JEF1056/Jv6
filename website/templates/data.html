@@ -66,6 +66,48 @@
 								<form action="#" method="post">
 									<div>
 										<div class="row">
+                                            <table>
+                                                <thead>
+                                                  <tr>
+                                                    <th>Setting</th>
+                                                    <th>Value</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr>
+                                                    <td>temperature</td>
+                                                    <td>{{guild_settings[1].temperature}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>top_k</td>
+                                                    <td>{{guild_settings[1].top_k}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>top_p</td>
+                                                    <td>{{guild_settings[1].top_p}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>seed</td>
+                                                    <td>{{guild_settings[1].seed}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>auto_seed</td>
+                                                    <td>{{guild_settings[1].auto_seed}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>max_history</td>
+                                                    <td>{{guild_settings[1].max_history}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>max_length</td>
+                                                    <td>{{guild_settings[1].max_length}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>no_sample</td>
+                                                    <td>{{guild_settings[1].no_sample}}</td>
+                                                  </tr>
+                                                </tbody>
+                                                </table>
 											<div class="col-6 col-12-medium">
 												<input type="text" name="Setting" placeholder="Setting" />
 											</div>
