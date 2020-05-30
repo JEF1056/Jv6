@@ -34,7 +34,7 @@ def callback():
 def data():
     user = discord.fetch_user()
     guilds=discord.fetch_guilds()
-    print(vars(guilds))
+    print(guilds)
     return render_template("data.html", avatar_url=user.avatar_url, name=user.name)
 
 
