@@ -41,7 +41,7 @@ def data():
         if str(guild.id)+".p" in os.listdir("../hist"):
             guilds_data.append(guild)
     print(guilds_data)
-    return render_template("data.html", str(avatar_url=user.avatar_url)+"?size=2048", name=user.name, guilds=guilds_data)
+    return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=2048", name=user.name, guilds=guilds_data)
 
 
 if __name__ == "__main__":
