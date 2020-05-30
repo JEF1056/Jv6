@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <link rel="icon" href="/static/icon.ico">
+<script src="/static/data/assets/js/get_vars.js"></script>
 <script>
     var guild_id=0;
     var guild_settings=JSON.parse({{guild_settings}})
@@ -52,7 +53,7 @@
 									<div class="row">
                                         {% for guild in guilds %}
                                             <div class="col-4 col-6-medium col-12-small">
-                                                <a href="javascript:guild_id={{guild.id}}; document.getElementById('Guild Name').innerHTML = &quot;{{guild.name}}&quot;; window.location.replace('#settings');"; class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 alt=""></a>
+                                                <a href="javascript:guild_id={{guild.id}}; document.getElementById('Guild Name').innerHTML = &quot;{{guild.name}}&quot;; setGuild(guild_settings); window.location.replace('#settings');"; class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 alt=""></a>
                                             </div>
                                         {% endfor %}
 									</div>
@@ -77,35 +78,39 @@
                                     <tbody>
                                     <tr>
                                         <td>temperature</td>
-                                        <td>NaN</td>
+                                        <td, id="temperature">NaN</td>
                                     </tr>
                                     <tr>
                                         <td>top_k</td>
-                                        <td>NaN</td>
+                                        <td, id="top_k">NaN</td>
                                     </tr>
                                     <tr>
                                         <td>top_p</td>
-                                        <td>NaN</td>
+                                        <td, id="top_p">NaN</td>
                                     </tr>
                                     <tr>
                                         <td>seed</td>
-                                        <td>NaN</td>
+                                        <td, id="seed">NaN</td>
                                     </tr>
                                     <tr>
                                         <td>auto_seed</td>
-                                        <td>NaN</td>
+                                        <td, id="auto_seed">NaN</td>
                                     </tr>
                                     <tr>
                                         <td>max_history</td>
-                                        <td>NaN</td>
+                                        <td, id="max_history">NaN</td>
                                     </tr>
                                     <tr>
                                         <td>max_length</td>
-                                        <td>NaN</td>
+                                        <td, id="max_length">NaN</td>
+                                    </tr>
+                                    <tr>
+                                        <td>min_length</td>
+                                        <td, id="min_length">NaN</td>
                                     </tr>
                                     <tr>
                                         <td>no_sample</td>
-                                        <td>NaN</td>
+                                        <td, id="no_sample">NaN</td>
                                     </tr>
                                     </tbody>
                                 </table>
