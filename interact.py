@@ -427,8 +427,6 @@ async def on_message(message):
             ratelimit=2
         else:
             ratelimit=6
-        print(t1)
-        print(time.time())
         if round(time.time())-t1 > ratelimit:
             await message.channel.trigger_typing()
             raw_text = message.content[len(prefix):][:100].lower().strip()
