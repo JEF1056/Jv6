@@ -36,17 +36,17 @@ footer, header, hgroup, menu, nav, section {
     width: 50%;
 }
 
-.message_red {
+p.message_red {
     border-style: none none none solid;
     border-color: #ffaa99;
 }
 
-.message_green {
+p.message_green {
     border-style: none none none solid;
     border-color: #bbff99;
 }
 
-.message_none {
+p.message_none {
     border-style: none;
 }
 
