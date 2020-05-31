@@ -4,12 +4,16 @@ function setGuild(guild_id, guild_name, guild_settings,guild_icon_hash) {
     console.log(guild_settings)
     var img_url = "https://cdn.discordapp.com/icons/"+guild_id+"/"+guild_icon_hash+".png?size=512"
     console.log(img_url)
-    var date = new Date(guild_settings[guild_id]["t1"] * 1000);
+    var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var date = new Date(guild_settings[guild_id]["t1"]*1000);
+    var year = date.getFullYear();
+    var month = months_arr[date.getMonth()];
+    var day = date.getDate();
     var hours = date.getHours();
     var minutes = "0" + date.getMinutes();
     var seconds = "0" + date.getSeconds();
-    var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-    document.getElementById("settings_small_text").innerHTML = "Most recent timestamp: "+formattedTime+"\nSave file version: "+guild_settings[guild_id]["user_version"];
+    var convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    document.getElementById("settings_small_text").innerHTML = "Most recent timestamp: "+convdataTime+"\n\nSave file version: "+guild_settings[guild_id]["user_version"];
     document.getElementById('Guild Name').innerHTML = guild_name;
     document.getElementById("Guild Img").src =img_url;
     document.getElementById("temperature").innerHTML = guild_settings[guild_id]["settings"]["temperature"];
