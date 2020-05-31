@@ -29,5 +29,5 @@ function setGuild(guild_id, guild_name, guild_settings,guild_icon_hash) {
 function send_change(guild_id, data) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/submit", false);
-    xhttp.send(JSON.stringify(data));
+    xhttp.send(data);
 }

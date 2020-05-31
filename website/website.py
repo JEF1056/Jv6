@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for, render_template, request
 from flask_discord import DiscordOAuth2Session, requires_authorization
 from waitress import serve
+from flask import json as flask_json
 import json
 import pickle
 import os
@@ -35,7 +36,7 @@ def callback():
 @requires_authorization
 def submit():
     if request.method == 'POST':
-        inp = request.data
+        inp = flask_json.dumps(request.json)
         print(inp)
         print(type(inp))
         return "hi"
