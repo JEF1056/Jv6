@@ -32,9 +32,12 @@ def callback():
   return redirect(url_for(".data"))
 
 @app.route("/submit/", methods=['POST'])
+@requires_authorization
 def submit():
     if request.method == 'POST':
-        inp = request['Setting']
+        print(request)
+        print(request.fomr)
+        inp = request.form['Setting']
         print(inp)
         return "hi"
 	
