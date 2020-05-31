@@ -35,7 +35,8 @@ def callback():
 @requires_authorization
 def submit():
     if request.method == 'POST':
-        inp = request.data()
+        inp = request.data
+        print(request.headers['Content-Type'])
         print(inp)
         print(type(inp))
         return "hi"
