@@ -30,9 +30,6 @@ def root():
 def callback():
   discord.callback()
   return redirect(url_for(".data"))
-	
-@app.route("/data/")
-@requires_authorization
 
 @app.route("/submit/", methods=['POST'])
 def submit():
@@ -40,6 +37,9 @@ def submit():
         inp = request.form['Setting']
         print(inp)
         return "hi"
+	
+@app.route("/data/")
+@requires_authorization
 
 def data():
     user = discord.fetch_user()
