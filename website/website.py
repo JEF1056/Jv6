@@ -34,27 +34,23 @@ def callback():
 @app.route("/data/")
 @requires_authorization
 
-@app.route('/submit', methods=['POST'])
-@requires_authorization
-
-def submit_data():
+def data():
     if request.method == 'POST':
         inp = request.form['Setting']
         print(inp)
-    
-def data():
-    user = discord.fetch_user()
-    guilds=discord.fetch_guilds()
-    guilds_data=[]
-    guild_settings={}
-    for guild in guilds:
-        if str(guild.id)+".p" in os.listdir("../hist"):
-            guilds_data.append(guild)
-            guild_settings[int(guild.id)]=(pickle.load(open("../hist/"+str(guild.id)+".p", "rb")))
-            guild_settings[int(guild.id)]["settings"]=vars(guild_settings[int(guild.id)]["settings"])
-    guild_settings=json.dumps(guild_settings)
-    
-    return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", name=user.name, guilds=guilds_data, guild_settings=guild_settings)
+    else:
+        user = discord.fetch_user()
+        guilds=discord.fetch_guilds()
+        guilds_data=[]
+        guild_settings={}
+        for guild in guilds:
+            if str(guild.id)+".p" in os.listdir("../hist"):
+                guilds_data.append(guild)
+                guild_settings[int(guild.id)]=(pickle.load(open("../hist/"+str(guild.id)+".p", "rb")))
+                guild_settings[int(guild.id)]["settings"]=vars(guild_settings[int(guild.id)]["settings"])
+        guild_settings=json.dumps(guild_settings)
+        
+        return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", name=user.name, guilds=guilds_data, guild_settings=guild_settings)
 
 
 if __name__ == "__main__":
