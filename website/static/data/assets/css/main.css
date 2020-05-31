@@ -190,10 +190,6 @@ input, select, textarea {
 
 		.row > .col-9 {
             width: 75%;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
 		}
 
 		.row > .off-9 {
@@ -1124,10 +1120,6 @@ input, select, textarea {
 
 				.row > .col-3-small {
                     width: 25%;
-                    display: block;
-                    margin-left: auto;
-                    margin-right: auto;
-                    width: 50%;
 				}
 
 				.row > .off-3-small {
