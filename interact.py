@@ -270,7 +270,7 @@ async def on_message(message):
                 except: pass
             user_version=current_version
     if message.content.lower() == prefix+"-h":
-        embed=build_versions.make_help(dbli, client, prefix)
+        embed=await build_versions.make_help(dbli, client, prefix)
         await message.channel.send(embed=embed, delete_after=150)
         try:
             await message.delete()
