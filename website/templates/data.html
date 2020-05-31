@@ -162,10 +162,10 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-6 col-12-medium">
-                                                    <input type="button" onclick="send_change(guild_id, {'setting':document.getElementById('Setting').value, 'value':document.getElementById('Value').value});" value="Commit Settings" />
+                                                    <input type="button" onclick="send_change({'form':{'guild_id':guild_id, 'setting':document.getElementById('Setting').value, 'value':document.getElementById('Value').value}});" value="Commit Settings" />
                                                 </div>
                                                 <div class="col-6 col-12-medium">
-                                                    <input type="button" onclick="send_change(guild_id, {'setting':document.getElementById('Setting').value, 'value':document.getElementById('Value').value});" value="Reset" />
+                                                    <input type="button" onclick="send_change({'form':{'guild_id':guild_id, 'setting':document.getElementById('Setting').value, 'value':document.getElementById('Value').value}});" value="Reset" />
                                                 </div>
                                             </div>
                                         </div>

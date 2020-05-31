@@ -36,7 +36,7 @@ def callback():
 def submit():
     if request.method == 'POST':
         print(request)
-        print(request.setting)
+        print(request.form)
         inp = request.form['Setting']
         print(inp)
         return "hi"
