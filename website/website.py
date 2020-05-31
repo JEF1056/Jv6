@@ -36,7 +36,6 @@ def callback():
 def submit():
     if request.method == 'POST':
         inp = request.data
-        print(request.headers['Content-Type'])
         print(inp)
         print(type(inp))
         return "hi"
