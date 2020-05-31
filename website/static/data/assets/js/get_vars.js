@@ -27,5 +27,6 @@ function setGuild(guild_id, guild_name, guild_settings,guild_icon_hash) {
 }
 
 function send_change(guild_id, data) {
-    
+    xhttp.open("POST", "https://jadeai.ml/submit", true);
+    xhttp.send(data);
 }

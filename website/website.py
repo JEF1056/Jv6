@@ -38,7 +38,7 @@ def callback():
 @requires_authorization
 def submit_data():
     if request.method == 'POST':
-        inp = request.form['changes']
+        inp = request.form['Setting']
         print(inp)
     
 def data():
