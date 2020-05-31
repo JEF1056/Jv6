@@ -3,6 +3,7 @@
 <script src="/static/data/assets/js/get_vars.js"></script>
 <script>
     var guild_settings=JSON.parse('{{guild_settings}}'.replace(/&#34;/gi,'"'));
+    var guild_id=0n
 </script>
 <html>
 	<head>
@@ -52,7 +53,7 @@
 									<div class="row">
                                         {% for guild in guilds %}
                                             <div class="col-4 col-6-medium col-12-small">
-                                                <a href="#settings" onclick="setGuild({{guild.id}}n,&quot;{{guild.name}}&quot;,guild_settings,&quot;{{guild.icon_hash}}&quot;);" class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 alt=""></a>
+                                                <a href="#settings" onclick="setGuild({{guild.id}}n,&quot;{{guild.name}}&quot;,guild_settings,&quot;{{guild.icon_hash}}&quot;); guild_id={{guild.id}}n;" class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 alt=""></a>
                                             </div>
                                         {% endfor %}
 									</div>
@@ -157,14 +158,14 @@
                                                 </select>
                                             </div>
                                             <div class="col-6 col-12-medium">
-                                                <input type="text" name="Value" placeholder="" />
+                                                <input type="text" name="Value" placeholder=0 />
                                             </div>
                                             <div class="Row">
                                                 <div class="col-6 col-12-medium">
-                                                    <input type="submit" value="Commit Settings" />
+                                                    <input type="button" onclick="send_change(guild_id, {document.getElementByName('Setting').value, document.getElementByName('Value').value});" value="Commit Settings" />
                                                 </div>
                                                 <div class="col-6 col-12-medium">
-                                                    <input type="submit" value="Reset" />
+                                                    <input type="button" onclick="send_change(guild_id, {document.getElementByName('Setting').value, document.getElementByName('Value').value});" value="Reset" />
                                                 </div>
                                             </div>
                                         </div>

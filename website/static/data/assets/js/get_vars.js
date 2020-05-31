@@ -25,3 +25,7 @@ function setGuild(guild_id, guild_name, guild_settings,guild_icon_hash) {
     document.getElementById("max_length").innerHTML = guild_settings[guild_id]["settings"]["max_length"];
     document.getElementById("no_sample").innerHTML = guild_settings[guild_id]["settings"]["no_sample"];
 }
+
+function send_change(guild_id, data) {
+    
+}

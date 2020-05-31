@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, redirect, url_for, render_template, request
 from flask_discord import DiscordOAuth2Session, requires_authorization
 from waitress import serve
 import json
@@ -34,6 +34,13 @@ def callback():
 @app.route("/data/")
 @requires_authorization
 
+@app.route('/submit', methods=['POST'])
+@requires_authorization
+def submit_data():
+    if request.method == 'POST':
+        inp = request.form['changes']
+        print(inp)
+    
 def data():
     user = discord.fetch_user()
     guilds=discord.fetch_guilds()
