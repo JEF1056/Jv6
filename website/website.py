@@ -34,7 +34,7 @@ def callback():
 @app.route("/submit/", methods=['POST'])
 def submit():
     if request.method == 'POST':
-        inp = request.form['Setting']
+        inp = request['Setting']
         print(inp)
         return "hi"
 	
