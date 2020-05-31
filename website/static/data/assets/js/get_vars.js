@@ -26,8 +26,9 @@ function setGuild(guild_id, guild_name, guild_settings,guild_icon_hash) {
     document.getElementById("no_sample").innerHTML = guild_settings[guild_id]["settings"]["no_sample"];
 }
 
-function send_change(guild_id, data) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/submit", false);
-    xhttp.send(data);
+function send_change(data) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "/submit");
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.send(JSON.stringify(data));
 }
