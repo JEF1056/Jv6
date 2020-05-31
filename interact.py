@@ -9,7 +9,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import time, requests
 from discord.ext.tasks import loop
-import json
+import json, build_versions
 
 global client, config
 client = discord.Client()
@@ -207,7 +207,8 @@ except Exception as e:
 def get_history(message):
     try:
         hist=""
-        history=pickle.load(open("hist/"+str(message.guild.id)+".p", "rb"))[2]
+        for key, value in pickle.load(open("hist/"+str(message.guild.id)+".p", "rb")).items():
+            globals()[key]=value
         for i, p in enumerate(history):
             if i % 2 == 0:
                 hist+="> "+tokenizer.decode(p, skip_special_tokens=True)+"\n"
@@ -240,51 +241,36 @@ async def on_ready():
     await client.change_presence(activity=discord.Game("New year, new Jade!"))
     update_guilds.start()
 
-prefix="jd "
+prefix=config["prefix"]
+current_version=0
+global t1, settings, history,user_version
 
 @client.event
 async def on_message(message):
-    global personality, tokenizer, model, client
+    global personality, tokenizer, model, client, t1, settings, history,user_version
     if message.content.lower().startswith(prefix):
         history=[]
         settings=args1
-        t1=round(time.time())
+        user_version=0
         try:
             user_status=await dbli.get_user_vote(user_id=message.author.id)
         except:
             user_status=False
         try:
-            t1, settings, history=pickle.load(open("hist/"+str(message.guild.id)+".p", "rb"))
+            for key, value in pickle.load(open("hist/"+str(message.guild.id)+".p", "rb")).items():
+                globals()[str(key)]=value
         except Exception as e:
             args.seed=random.randint(0,9999999999)
             t1=time.time()-30
-            pickle.dump([t1,args,[]], open("hist/"+str(message.guild.id)+".p", "wb"))
-            embed=discord.Embed(title="New Jade Version!", description="Jade V6",color=0x80ff80)
-            jess=client.get_user(249024790030057472)
-            jade=client.get_user(410253782828449802)
-            embed.set_author(name=str(jess), icon_url=str(jess.avatar_url), url="https://j-fan.ml")
-            embed.set_thumbnail(url=str(jade.avatar_url))
-            embed.add_field(name="New Features", value="This new version of jade is based on [GPT-2](https://openai.com/blog/better-language-models/)," +
-            " and is able to acheive a stunning 88% accuracy in tests against real discord data. Alongside with the new, more powerful model, Jade now comes" +
-            " with more settings than ever before (try typing `"+prefix+"-s`), and I hope that with these upgrades, Jade is better than ever", inline=False)
-            embed.add_field(name="How to use?", value="Pretty simple! to get started, try typing a message in the format `"+prefix+"[message]`, such as " +
-            " `"+prefix+"how's your day been?`. She'll respond and record the history. She will learn over time as you speak to her more and get acquainted!" +
-            " type `"+prefix+"-h` for a help menu! More documentation can be found on her [github](https://github.com/JEF1056/Jv6).")
-            embed.add_field(name="Advanced Settings", value="Lots of advanced settings exist in this new version of Jade, accessable via `"+prefix+"-s`." +
-            " Most of them should work very well as-is, but you're free to change them any way you like. Be sure to upvote Jade on [top.gg](https://top.gg/bot/410253782828449802/vote)" +
-            " to decrease your ratelimit timer and gain access to advanced settings!")
-            embed.add_field(name="Conclusion", value="I'm excited to be able to deploy such an advancement to the Jade algorithm. I hope" +
-            " that you'll have a great time using Jade, and look forward to your continued support! \n\n- Jess Fan\n*Solo developer of Jade*", inline=False)
-            await message.channel.send(embed=embed)
+            pickle.dump({"t1":t1,"settings":args,"history":[], "user_version":0}, open("hist/"+str(message.guild.id)+".p", "wb"))
+        if user_version != current_version:
+            for version_num in range(current_version-2, current_version+1):
+                try:
+                    await message.channel.send(embed=build_versions.version_message(version_num, client, prefix))
+                except: pass
+            user_version=current_version
     if message.content.lower() == prefix+"-h":
-        embed=discord.Embed(title="Help", description="Ah, so you don't know what you're doing.\n~~Don't worry, I don't either~~\n__                                                                          __" ,color=0x80ff80)
-        embed.add_field(name=prefix+"[message]",value="Talks to Jade! (pretty simple) \n```"+prefix+"hello, how are you?```", inline=False)
-        embed.add_field(name=prefix+"-h",value="Help menu (you're right here!!) \n```"+prefix+"-h```", inline=False)
-        embed.add_field(name=prefix+"-v",value="[Vote for Jade!](https://top.gg/bot/410253782828449802/vote) enables settings that are supporter-only.\n```"+prefix+"-v```", inline=False)
-        embed.add_field(name=prefix+"-p",value="Shows the ping between Jade's server and Discord. \n```"+prefix+"-p```", inline=False)
-        embed.add_field(name=prefix+"-r [(optional) arg1] [(optional) arg2]",value="Reset function. Contains arguments: `history` and `settings` \n```"+prefix+"-r history settings```", inline=False)
-        embed.add_field(name=prefix+"-s [setting] [value]",value="Jade's neural network settings. (no arguments for a panel) \nContains (working) arguments: `seed`,`temperature`,`top_k`,`top_p` \n```"+prefix+"-s seed 100```", inline=False)
-        embed.set_image(url=await dbli.get_widget_large(client.user.id))
+        embed=build_versions.make_help(dbli, client, prefix)
         await message.channel.send(embed=embed, delete_after=150)
         try:
             await message.delete()
@@ -375,7 +361,7 @@ async def on_message(message):
                     any_changes=True
             else:
                 embed=discord.Embed(title="Settings", description="`"+str(parameter[0])+"` is not a valid setting.", color=0x80ff80)
-            pickle.dump([t1, settings,history], open("hist/"+str(message.guild.id)+".p", "wb"))
+            pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("hist/"+str(message.guild.id)+".p", "wb"))
         else:
             embed=discord.Embed(title="Settings", description="`"+str(parameter)+"` contains more than two parts.", color=0x80ff80)
         await message.channel.send(embed=embed, delete_after=150)
@@ -421,7 +407,7 @@ async def on_message(message):
         if parameter=="":
             history=[]
             settings=args1
-        pickle.dump([t1, settings,history], open("hist/"+str(message.guild.id)+".p", "wb"))
+        pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("hist/"+str(message.guild.id)+".p", "wb"))
         embed=discord.Embed(title="Reset", description=desc, color=0x80ff80)
         await message.channel.send(embed=embed, delete_after=100)
         try:
@@ -438,9 +424,11 @@ async def on_message(message):
             pass
     elif message.content.lower().startswith(prefix):
         if user_status:
-            ratelimit=3
+            ratelimit=2
         else:
-            ratelimit=8
+            ratelimit=6
+        print(t1)
+        print(time.time())
         if round(time.time())-t1 > ratelimit:
             await message.channel.trigger_typing()
             raw_text = message.content[len(prefix):][:100].lower().strip()
@@ -457,7 +445,7 @@ async def on_message(message):
             if len(get_history(message).replace("> ","").split("\n")) >=4:
                 if avg_similarity(settings.max_history,get_history(message).replace("> ","").split("\n")) >= 0.35 and settings.auto_seed == True:
                     settings.seed=random.randint(0,9999999999)
-            pickle.dump([round(time.time()),settings,history], open("hist/"+str(message.guild.id)+".p", "wb"))
+            pickle.dump({"t1":round(time.time()),"settings":settings,"history":history,"user_version":user_version}, open("hist/"+str(message.guild.id)+".p", "wb"))
             out_text = tokenizer.decode(out_ids, skip_special_tokens=True)
             await message.channel.send(out_text)
             try:
