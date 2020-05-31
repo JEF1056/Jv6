@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
-<!--
-	Astral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<link rel="icon" href="/static/icon.ico">
+<script src="/static/data/assets/js/get_vars.js"></script>
+<script>
+    var guild_settings=JSON.parse('{{guild_settings}}'.replace(/&#34;/gi,'"'));
+</script>
 <html>
 	<head>
-		<title>Astral by HTML5 UP</title>
+		<title>JadeAI : Control Panel</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/static/data/assets/css/main.css" />
@@ -19,10 +19,10 @@
 
 				<!-- Nav -->
 					<nav id="nav">
-						<a href="#" class="icon solid fa-home"><span>Home</span></a>
-						<a href="#work" class="icon solid fa-folder"><span>Work</span></a>
-						<a href="#contact" class="icon solid fa-envelope"><span>Contact</span></a>
-						<a href="https://twitter.com/ajlkn" class="icon brands fa-twitter"><span>Twitter</span></a>
+						<a href="#" class="icon solid fa-portrait"><span>{{name}}</span></a>
+						<a href="#guilds" class="icon solid fa-server"><span>Guilds</span></a>
+                        <a href="#settings" class="icon solid fa-sliders-h"><span>Settings</span></a>
+                        <a href="#info" class="icon solid fa-info"><span>Info</span></a>
 					</nav>
 
 				<!-- Main -->
@@ -32,103 +32,158 @@
 							<article id="home" class="panel intro">
 								<header>
 									<h1>{{name}}</h1>
-									<p>Senior Astral Projectionist</p>
+									<p>Hewwo, Frien!</p>
 								</header>
-								<a href="#work" class="jumplink pic">
-									<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
+								<a href="#guilds" class="jumplink pic">
+									<span class="arrow icon solid fa-chevron-right"><span>Configure Your Settings</span></span>
 									<img src={{avatar_url}} alt="" height=394px/>
 								</a>
 							</article>
 
-						<!-- Work -->
-							<article id="work" class="panel">
+						<!-- Guilds -->
+							<article id="guilds" class="panel">
 								<header>
-									<h2>Work</h2>
+									<h2>Guilds</h2>
 								</header>
 								<p>
-									Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit.
-									Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-									luctus elit eget interdum.
+									Click any of the icons below to change Jade's settings in that server!
 								</p>
 								<section>
 									<div class="row">
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/static/data/images/pic01.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/static/data/images/pic02.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/static/data/images/pic03.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/static/data/images/pic04.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/static/data/images/pic05.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/static/data/images/pic06.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/static/data/images/pic07.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/static/data/images/pic08.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/static/data/images/pic09.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/static/data/images/pic10.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/static/data/images/pic11.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/static/data/images/pic12.jpg" alt=""></a>
-										</div>
+                                        {% for guild in guilds %}
+                                            <div class="col-4 col-6-medium col-12-small">
+                                                <a href="#settings" onclick="setGuild({{guild.id}}n,&quot;{{guild.name}}&quot;,guild_settings,&quot;{{guild.icon_hash}}&quot;);" class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 alt=""></a>
+                                            </div>
+                                        {% endfor %}
 									</div>
 								</section>
 							</article>
 
-						<!-- Contact -->
-							<article id="contact" class="panel">
+						<!-- Settings -->
+							<article id="settings" class="panel">
+                                <div>
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <header>
+                                                <h2 id="Guild Name">No Guild Selected</h2>
+                                            </header>
+                                            <p>
+                                                Click any of the icons below to change Jade's settings in that server!
+                                            </p>
+                                            <br>
+                                        </div>
+                                        <div class="col-3">
+                                            <img id="Guild Img" src="" alt="" height=90></img>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row">
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th>Setting</th>
+                                                <th>Value</th>
+                                                <th>Maximum</th>
+                                                <th>Default</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>temperature</td>
+                                                <td id="temperature">NaN</td>
+                                                <td>1</td>
+                                                <td>0.9</td>
+                                            </tr>
+                                            <tr>
+                                                <td>top_k</td>
+                                                <td id="top_k">NaN</td>
+                                                <td>inf</td>
+                                                <td>40</td>
+                                            </tr>
+                                            <tr>
+                                                <td>top_p</td>
+                                                <td id="top_p">NaN</td>
+                                                <td>1</td>
+                                                <td>0.95</td>
+                                            </tr>
+                                            <tr>
+                                                <td>seed</td>
+                                                <td id="seed">NaN</td>
+                                                <td>[random]</td>
+                                                <td>[random]</td>
+                                            </tr>
+                                            <tr>
+                                                <td>auto_seed</td>
+                                                <td id="auto_seed">NaN</td>
+                                                <td>True/False</td>
+                                                <td>True</td>
+                                            </tr>
+                                            <tr>
+                                                <td>max_history</td>
+                                                <td id="max_history">NaN</td>
+                                                <td>10</td>
+                                                <td>4</td>
+                                            </tr>
+                                            <tr>
+                                                <td>max_length</td>
+                                                <td id="max_length">NaN</td>
+                                                <td>20</td>
+                                                <td>10</td>
+                                            </tr>
+                                            <tr>
+                                                <td>no_sample</td>
+                                                <td id="no_sample">NaN</td>
+                                                <td>True/False</td>
+                                                <td>False</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+								<form action="#" method="post">
+                                    <div>
+										<div class="row">
+                                            <div class="col-6 col-12-medium">
+                                                <select name="Setting">
+                                                    <option value="temperature">temperature</option>
+                                                    <option value="top_k">top_k</option>
+                                                    <option value="top_p">top_p</option>
+                                                    <option value="seed">seed</option>
+                                                    <option value="auto_seed">auto_seed</option>
+                                                    <option value="max_history">max_history</option>
+                                                    <option value="max_length">max_length</option>
+                                                    <option value="no_sample">no_sample</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6 col-12-medium">
+                                                <input type="text" name="Value" placeholder="" />
+                                            </div>
+                                            <div class="col-12">
+                                                <input type="submit" value="Commit Settings" />
+                                            </div>
+                                        </div>
+                                    </div>
+								</form>
+                            </article>
+                            
+                        <!-- Information -->
+                            <article id="info" class="panel">
 								<header>
-									<h2>Contact Me</h2>
+                                    <h2>Info</h2>
 								</header>
 								<form action="#" method="post">
-									<div>
-										<div class="row">
-											<div class="col-6 col-12-medium">
-												<input type="text" name="name" placeholder="Name" />
-											</div>
-											<div class="col-6 col-12-medium">
-												<input type="text" name="email" placeholder="Email" />
-											</div>
-											<div class="col-12">
-												<input type="text" name="subject" placeholder="Subject" />
-											</div>
-											<div class="col-12">
-												<textarea name="message" placeholder="Message" rows="6"></textarea>
-											</div>
-											<div class="col-12">
-												<input type="submit" value="Send Message" />
-											</div>
-										</div>
-									</div>
+									
 								</form>
 							</article>
-
 					</div>
 
 				<!-- Footer -->
 					<div id="footer">
 						<ul class="copyright">
-							<li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							<li>&copy; Jade AI</li><li>Design & Development: <a href="http://j-fan.ml">Jess Edmund Fan</a></li>
 						</ul>
 					</div>
-
 			</div>
 
 		<!-- Scripts -->
@@ -136,7 +191,7 @@
 			<script src="/static/data/assets/js/browser.min.js"></script>
 			<script src="/static/data/assets/js/breakpoints.min.js"></script>
 			<script src="/static/data/assets/js/util.js"></script>
-			<script src="/static/data/assets/js/main.js"></script>
+            <script src="/static/data/assets/js/main.js"></script>
 
 	</body>
 </html>

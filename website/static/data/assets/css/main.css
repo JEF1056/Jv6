@@ -27,7 +27,14 @@ section, summary, time, mark, audio, video {
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;}
+    display: block;}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
 
 body {
 	line-height: 1;
@@ -182,7 +189,7 @@ input, select, textarea {
 		}
 
 		.row > .col-9 {
-			width: 75%;
+            width: 75%;
 		}
 
 		.row > .off-9 {
@@ -938,8 +945,8 @@ input, select, textarea {
 					margin-left: 91.66667%;
 				}
 
-				.row > .col-12-medium {
-					width: 100%;
+                row > .col-12-medium {
+                    width: 100%;
 				}
 
 				.row > .off-12-medium {
@@ -1112,7 +1119,7 @@ input, select, textarea {
 				}
 
 				.row > .col-3-small {
-					width: 25%;
+                    width: 25%;
 				}
 
 				.row > .off-3-small {
@@ -1440,26 +1447,29 @@ input, select, textarea {
 /* Table */
 
 	table {
-		width: 100%;
+        width: 100%;
+        align-self: center;
 	}
 
-		table.default tbody tr {
-			border-bottom: solid 1px #f4f4f4;
-		}
+	table tbody tr {
+		border-bottom: solid 1px #f4f4f4;
+	}
 
-		table.default td {
-			padding: 0.5em 1em 0.5em 1em;
-		}
+	table td {
+        padding: 0.5em 1em 0.5em 1em;
+        text-align: center;
+	}
 
-		table.default th {
-			text-align: left;
-			font-weight: 400;
-			padding: 0.5em 1em 0.5em 1em;
-		}
-
-		table.default thead {
-			border-bottom: solid 2px #f4f4f4;
-		}
+	table th {
+		text-align: center;
+		font-weight: 400;
+        padding: 0.5em 1em 0.5em 1em;
+        border-bottom: solid 1px #333;
+    }
+    
+    table thead {
+	    border-bottom: solid 2px #f4f4f4;
+	}
 
 /* Form */
 
@@ -1470,7 +1480,7 @@ input, select, textarea {
 		margin: 0 0 1em 0;
 	}
 
-	form input[type="text"],
+    form input[type="text"],
 	form input[type="email"],
 	form input[type="password"],
 	form select,
@@ -1484,7 +1494,14 @@ input, select, textarea {
 		-webkit-transition: background-color .25s ease-in-out;
 		-ms-transition: background-color .25s ease-in-out;
 		transition: background-color .25s ease-in-out;
-	}
+    }
+    
+    form dropdown-content {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
 
 		form input[type="text"]:focus,
 		form input[type="email"]:focus,
@@ -1784,7 +1801,7 @@ input, select, textarea {
 			line-height: 0.9em;
 			font-size: 2.5em;
 			margin: 0 0.25em 0 0.25em;
-			opacity: 0.35;
+			opacity: 0.75;
 			outline: 0;
 			-moz-transition: opacity .25s ease-in-out;
 			-webkit-transition: opacity .25s ease-in-out;
