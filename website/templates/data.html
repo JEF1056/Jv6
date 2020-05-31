@@ -161,11 +161,14 @@
                                                 <input type="text" name="Value" placeholder=0 id="Value"/>
                                             </div>
                                             <div class="row">
-                                                <div class="col-6 col-12-medium">
-                                                    <input type="button" onclick="send_change({'guild_id':guild_id.toString(), 'setting':document.getElementById('Setting').value, 'value':document.getElementById('Value').value});" value="    Commit Settings    " />
+                                                <div class="col-12-medium">
+                                                    <input type="button" onclick="send_change({'guild_id':guild_id.toString(), 'setting':document.getElementById('Setting').value, 'value':document.getElementById('Value').value});" value="Commit Settings" />
                                                 </div>
-                                                <div class="col-6 col-12-medium">
-                                                    <input type="button" onclick="send_change({'guild_id':guild_id.toString(), 'setting':document.getElementById('Setting').value, 'value':document.getElementById('Value').value});" value="      Reset     " />
+                                                <div class="col-12-medium">
+                                                    <input type="button" onclick="send_change({'guild_id':guild_id.toString(), 'setting':document.getElementById('Setting').value, 'value':document.getElementById('Value').value});" value="Reset" />
+                                                </div>
+                                                <div class="col-12-medium">
+                                                    <p id="message" class="message_none">hello</p>
                                                 </div>
                                             </div>
                                         </div>
