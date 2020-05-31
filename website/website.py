@@ -58,7 +58,6 @@ def data():
     
     return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", name=user.name, guilds=guilds_data, guild_settings=guild_settings)
 
-
 if __name__ == "__main__":
   #app.run(ssl_context='adhoc')
   serve(app, host=config["host"], port=config["port"], url_scheme='https')

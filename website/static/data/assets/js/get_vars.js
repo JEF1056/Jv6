@@ -27,8 +27,18 @@ function setGuild(guild_id, guild_name, guild_settings,guild_icon_hash) {
 }
 
 function send_change(data) {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "/submit");
-    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xmlhttp.send(JSON.stringify(data));
+    // request options
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    
+    // send post request
+    fetch('/submit', options)
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(err => console.error(err));
 }
