@@ -38,16 +38,22 @@ footer, header, hgroup, menu, nav, section {
 
 p.message_red {
     border-style: none none none solid;
-    border-color: #ffaa99;
+    border-color: #ff9988;
+    border-width: 6px;
+    background-color: #ffccbb;
+    padding: 0.7em 1.5em 0.7em 1.5em;
 }
 
 p.message_green {
     border-style: none none none solid;
-    border-color: #bbff99;
+    border-color: #aaff88;
+    background-color: #ccffb8;
+    padding: 0.7em 1.5em 0.7em 1.5em;
 }
 
 p.message_none {
     border-style: none;
+    padding: 0.7em 1.5em 0.7em 1.5em;
 }
 
 body {
