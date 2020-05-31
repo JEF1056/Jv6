@@ -35,10 +35,9 @@ def callback():
 @requires_authorization
 def submit():
     if request.method == 'POST':
-        print(request)
-        print(request.form)
-        inp = request.form['Setting']
+        inp = request.data()
         print(inp)
+        print(type(inp))
         return "hi"
 	
 @app.route("/data/")
