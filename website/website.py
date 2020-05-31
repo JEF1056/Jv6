@@ -39,7 +39,7 @@ def submit():
         inp = flask_json.dumps(request.json)
         print(inp)
         print(type(inp))
-        return "hi"
+        return {"error":"None"}
 	
 @app.route("/data/")
 @requires_authorization
