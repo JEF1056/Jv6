@@ -145,13 +145,19 @@
                                     <div>
 										<div class="row">
                                             <div class="col-6 col-12-medium">
-                                                <input type="text" name="Setting" placeholder="Setting" />
+                                                <select name="Setting">
+                                                    <option value="temperature">temperature</option>
+                                                    <option value="top_k">top_k</option>
+                                                    <option value="top_p">top_p</option>
+                                                    <option value="seed">seed</option>
+                                                    <option value="auto_seed">auto_seed</option>
+                                                    <option value="max_history">max_history</option>
+                                                    <option value="max_length">max_length</option>
+                                                    <option value="no_sample">no_sample</option>
+                                                </select>
                                             </div>
                                             <div class="col-6 col-12-medium">
-                                                <input type="text" name="Setting" placeholder="Setting" />
-                                            </div>
-                                            <div class="col-12">
-                                                <input type="text" name="Setting" placeholder="Setting" />
+                                                <input type="text" name="Value" placeholder="" />
                                             </div>
                                             <div class="col-12">
                                                 <input type="submit" value="Commit Settings" />
