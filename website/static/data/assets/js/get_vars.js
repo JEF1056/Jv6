@@ -9,9 +9,9 @@ function setGuild(guild_id, guild_name, guild_settings,guild_icon_hash) {
     var minutes = "0" + date.getMinutes();
     var seconds = "0" + date.getSeconds();
     var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-    document.getElementById("settings_small_text").innerHTML = "Most recent timestamp: "+formattedTime + "\nSave file version: "+guild_settings["user_version"]
-    document.getElementById('Guild Name').innerHTML = guild_name
-    document.getElementById("Guild Img").src =img_url
+    document.getElementById("settings_small_text").innerHTML = "Most recent timestamp: "+formattedTime+"\nSave file version: "+guild_settings["user_version"];
+    document.getElementById('Guild Name').innerHTML = guild_name;
+    document.getElementById("Guild Img").src =img_url;
     document.getElementById("temperature").innerHTML = guild_settings[guild_id]["settings"]["temperature"];
     document.getElementById("top_k").innerHTML = guild_settings[guild_id]["settings"]["top_k"];
     document.getElementById("top_p").innerHTML = guild_settings[guild_id]["settings"]["top_p"];
