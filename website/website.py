@@ -63,7 +63,7 @@ def submit():
         limiters={"temperature":{"max": 1, "type":float}, "top_k":{"max": float("inf"), "type":int}, "top_p":{"max": 1, "type":float},
         "no_sample":{"type":str2bool}, "seed":{"max": float("inf"), "type":int}, "auto_seed":{"type":str2bool}, 
         "max_history":{"max": 10, "type":int}, "max_length":{"max": 20, "type":int}}
-        if int(inp["guild_id"]) != 0 and str(inp["guild_id"])+".p" in os.listdir("../hist")):
+        if int(inp["guild_id"]) != 0 and str(inp["guild_id"])+".p" in os.listdir("../hist"):
             if inp["value"] == '' or inp["setting"] not in limiters:
                 return {"state":False, "message":"Cannot Input Null Value!!"}
             elif inp["setting"]=="reset":
