@@ -237,7 +237,7 @@ async def on_ready():
     print('Logged in as '+client.user.name+' (ID:'+str(client.user.id)+') | Connected to '+str(len(client.guilds))+' servers | Connected to '+ str(len(set(client.get_all_members()))) +' users')
     print('--------')
     print("Discord.py verison: " + discord.__version__)
-    await client.change_presence(activity=discord.Game("New year, new Jade!"))
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=" the messages pass by ✨✨"))
     update_guilds.start()
 
 prefix=config["prefix"]
@@ -328,6 +328,7 @@ async def on_message(message):
             pass
     elif message.content.lower().startswith(prefix+"-s "):
         parameter=message.content.lower()[len(prefix)+3:].split(" ")
+        any_changes=False
         if len(parameter) == 2:
             alt_settings=vars(settings)
             server=["model", "model_checkpoint", "device"]
@@ -336,7 +337,6 @@ async def on_message(message):
             limiters={"temperature":{"max": 1, "type":float}, "top_k":{"max": float("inf"), "type":int}, "top_p":{"max": 1, "type":float},
             "no_sample":{"type":str2bool}, "seed":{"max": float("inf"), "type":int}, "auto_seed":{"type":str2bool}, 
             "max_history":{"max": 10, "type":int}, "max_length":{"max": 20, "type":int}}
-            any_changes=False
             if parameter[0] in server:
                 embed=discord.Embed(title="Settings", description="`"+str(parameter[0])+"` is a server-side setting, and cannot be changed.", color=0x80ff80)
             elif parameter[0] in privledged and user_status==False:
