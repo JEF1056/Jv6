@@ -37,8 +37,7 @@ footer, header, hgroup, menu, nav, section {
 }
 
 ::-webkit-scrollbar {
-    width: 6px;
-    height: 12px;
+    width: 12px;
 }
 
 ::-webkit-scrollbar-track {
@@ -54,11 +53,13 @@ body:hover::-webkit-scrollbar-thumb {
 body.scrolling::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb:horizontal:hover, 
 ::-webkit-scrollbar-thumb:vertical:hover {
-    background: rgba(153, 153, 153, 1);
+    background: #e6ebe6;
+    border: 3px solid transparent;
 }
 ::-webkit-scrollbar-thumb:horizontal:active,
 ::-webkit-scrollbar-thumb:vertical:active {   
-    background: rgba(153, 153, 153, 1);
+    background: #e6ebe6;
+    border: 3px solid transparent;
 }
 
 p.message_red {
