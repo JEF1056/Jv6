@@ -67,23 +67,23 @@ def submit():
             limiters={"temperature":{"max": 1, "type":float}, "top_k":{"max": float("inf"), "type":int}, "top_p":{"max": 1, "type":float},
             "no_sample":{"type":str2bool}, "seed":{"max": float("inf"), "type":int}, "auto_seed":{"type":str2bool}, 
             "max_history":{"max": 10, "type":int}, "max_length":{"max": 20, "type":int}}
-            if inp["Setting"] in server:
-                return {"state":False, "message":"<code>"+str(inp["Setting"])+"</code> is a server-side setting, and cannot be changed."}
-            elif inp["Setting"] in privledged and user_status==False:
-                return {"state":False, "message":"<code>"+str(inp["Setting"])+"</code> is a supporter-only setting. <a href=https://top.gg/bot/410253782828449802/vote>vote for Jade on top.gg</a>"}
-            elif (inp["Setting"] in client_side) or inp["Setting"] in privledged and user_status==True:
-                ch=limiters[inp["Setting"]]["type"](inp["Value"])
-                if limiters[inp["Setting"]]["type"] == float or limiters[inp["Setting"]]["type"] == int:
-                    if limiters[inp["Setting"]]["max"] >= ch and ch >= 0:
-                        return {"state":True, "message":"<code>"+str(inp["Setting"])+"</code> changed from <code>"+str(alt_settings[inp["Setting"]])+"</code> to <code>"+str(inp["Value"])+"</code>"}
-                        alt_settings[inp["Setting"]]=ch
+            if inp["setting"] in server:
+                return {"state":False, "message":"<code>"+str(inp["setting"])+"</code> is a server-side setting, and cannot be changed."}
+            elif inp["setting"] in privledged and user_status==False:
+                return {"state":False, "message":"<code>"+str(inp["setting"])+"</code> is a supporter-only setting. <a href=https://top.gg/bot/410253782828449802/vote>vote for Jade on top.gg</a>"}
+            elif (inp["setting"] in client_side) or inp["setting"] in privledged and user_status==True:
+                ch=limiters[inp["setting"]]["type"](inp["value"])
+                if limiters[inp["setting"]]["type"] == float or limiters[inp["setting"]]["type"] == int:
+                    if limiters[inp["setting"]]["max"] >= ch and ch >= 0:
+                        return {"state":True, "message":"<code>"+str(inp["setting"])+"</code> changed from <code>"+str(alt_settings[inp["setting"]])+"</code> to <code>"+str(inp["value"])+"</code>"}
+                        alt_settings[inp["setting"]]=ch
                     else:
-                        return {"state":True, "message":str(inp["Setting"])+" could not be changed from <code>"+str(alt_settings[inp["Setting"]])+"</code> to <code>"+str(inp["Value"])+"</code> becasue it is <code><= 0</code> or <code>>= "+str(limiters[inp["Setting"]]["max"])+"</code>"}
+                        return {"state":True, "message":str(inp["setting"])+" could not be changed from <code>"+str(alt_settings[inp["setting"]])+"</code> to <code>"+str(inp["value"])+"</code> becasue it is <code><= 0</code> or <code>>= "+str(limiters[inp["setting"]]["max"])+"</code>"}
                 else:
-                    return {"state":True, "message":"<code>"+str(inp["Setting"])+"<code> changed from <code>"+str(alt_settings[inp["Setting"]])+"<code> to <code>"+str(ch)+"<code>"}
-                    alt_settings[inp["Setting"]]=ch
+                    return {"state":True, "message":"<code>"+str(inp["setting"])+"<code> changed from <code>"+str(alt_settings[inp["setting"]])+"<code> to <code>"+str(ch)+"<code>"}
+                    alt_settings[inp["setting"]]=ch
             else:
-                return {"state":True, "message":"<code>"+str(inp["Setting"])+"<code> is not a valid setting."}
+                return {"state":True, "message":"<code>"+str(inp["setting"])+"<code> is not a valid setting."}
             pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("../hist/"+inp["guild_id"]+".p", "wb"))
         else:
             return {"state":False, "message":"No Guild Selected!"}
