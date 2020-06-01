@@ -55,7 +55,7 @@ def submit():
             user_status= dbli.get_user_vote(user_id=message.author.id)
         except:
             user_status=False
-        inp = flask_json.dumps(request.json)
+        inp = flask_json.loads(request.json)
         print(inp)
         print(type(inp))
         if int(inp["guild_id"]) != 0:
