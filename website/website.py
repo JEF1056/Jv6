@@ -75,15 +75,17 @@ def submit():
                 ch=limiters[inp["setting"]]["type"](inp["value"])
                 if limiters[inp["setting"]]["type"] == float or limiters[inp["setting"]]["type"] == int:
                     if limiters[inp["setting"]]["max"] >= ch and ch >= 0:
+                        og=alt_settings[inp["setting"]]
                         alt_settings[inp["setting"]]=ch
                         pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("../hist/"+inp["guild_id"]+".p", "wb"))
-                        return {"state":True, "message":""+str(inp["setting"])+" changed from "+str(alt_settings[inp["setting"]])+" to "+str(inp["value"])+""}
+                        return {"state":True, "message":""+str(inp["setting"])+" changed from "+str(og)+" to "+str(inp["value"])+""}
                     else:
                         return {"state":False, "message":str(inp["setting"])+" could not be changed from "+str(alt_settings[inp["setting"]])+" to "+str(inp["value"])+" becasue it is <= 0 or >= "+str(limiters[inp["setting"]]["max"])+""}
                 else:
+                    og=alt_settings[inp["setting"]]
                     alt_settings[inp["setting"]]=ch
                     pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("../hist/"+inp["guild_id"]+".p", "wb"))
-                    return {"state":True, "message":""+str(inp["setting"])+" changed from "+str(alt_settings[inp["setting"]])+" to "+str(ch)+""}
+                    return {"state":True, "message":""+str(inp["setting"])+" changed from "+str(og)+" to "+str(ch)+""}
             else:
                 return {"state":False, "message":""+str(inp["setting"])+" is not a valid setting."}
         else:
