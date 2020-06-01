@@ -38,15 +38,15 @@ footer, header, hgroup, menu, nav, section {
 
 ::-webkit-scrollbar {
     width: 6px !important;
-    background: transparent;
+    background: url("/static/data/assets/css/images/overlay.png");
 }
 
 ::-webkit-scrollbar * {
-    background:rgba(153, 153, 153, 0);
+    background:url("/static/data/assets/css/images/overlay.png");
 }
 
 ::-webkit-scrollbar-track {
-    background-color: rgba(153, 153, 153, 0);
+    background: url("/static/data/assets/css/images/overlay.png");
 }
 ::-webkit-scrollbar-thumb {
     border-radius: 3px;
