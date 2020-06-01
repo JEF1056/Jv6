@@ -38,7 +38,7 @@ footer, header, hgroup, menu, nav, section {
 
 * {
     scrollbar-width: thin;
-    scrollbar-color: blue orange;
+    scrollbar-color: #e6ebe6 #fafffa;
 }
   
   /* Works on Chrome/Edge/Safari */
@@ -46,12 +46,14 @@ footer, header, hgroup, menu, nav, section {
     width: 12px;
 }
 *::-webkit-scrollbar-track {
-    background: orange;
+    opacity: 75%;
+    background: #fafffa;
 }
 *::-webkit-scrollbar-thumb {
-    background-color: blue;
+    opacity: 100%;
+    background-color: #e6ebe6;
     border-radius: 20px;
-    border: 3px solid orange;
+    border: 3px solid #fafffa;
 }
 
 p.message_red {
