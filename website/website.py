@@ -58,7 +58,7 @@ def submit():
         print(inp)
         print(type(inp))
         if int(inp["guild_id"]) != 0:
-            for key, value in pickle.load(open("hist/"+str(inp["guild_id"])+".p", "rb")).items():
+            for key, value in pickle.load(open("../hist/"+str(inp["guild_id"])+".p", "rb")).items():
                 globals()[str(key)]=value
             alt_settings=vars(settings)
             server=["model", "model_checkpoint", "device"]
@@ -84,7 +84,7 @@ def submit():
                     alt_settings[inp["Setting"]]=ch
             else:
                 return {"state":True, "message":"<code>"+str(inp["Setting"])+"<code> is not a valid setting."}
-            pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("hist/"+inp["guild_id"]+".p", "wb"))
+            pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("../hist/"+inp["guild_id"]+".p", "wb"))
         else:
             return {"state":False, "message":"No Guild Selected!"}
 	
