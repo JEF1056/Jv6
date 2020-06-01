@@ -36,22 +36,18 @@ function send_change(data) {
         }
     }
     
-    let return_data;
     // send post request
-    fetch('/submit', options).then(
-            function(u){ return u.json();}
-        ).then(
+    fetch('/submit', options)
+        .then(function(u){ return u.json();})
+        .then(
             function(json){
-                return_data = json;
+                if (json["state"]==true) {
+                    document.getElementById("message").class = "message_green";
+                    document.getElementById("message").innerHTML = json["message"];
+                } else {
+                    document.getElementById("message").class = "message_red";
+                    document.getElementById("message").innerHTML = json["message"];
+                };
             }
         )
-    
-    console.log(return_data);
-    if (return_data["state"]==true) {
-        document.getElementById("message").class = "message_green";
-        document.getElementById("message").innerHTML = return_data["message"];
-    } else {
-        document.getElementById("message").class = "message_red";
-        document.getElementById("message").innerHTML = return_data["message"];
-    };
 }
