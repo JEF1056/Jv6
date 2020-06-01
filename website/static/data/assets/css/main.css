@@ -38,22 +38,20 @@ footer, header, hgroup, menu, nav, section {
 
 ::-webkit-scrollbar {
     width: 6px !important;
-    background: url("/static/data/assets/css/images/overlay.png");
 }
 
 ::-webkit-scrollbar * {
-    background:url("/static/data/assets/css/images/overlay.png");
+    background:transparent;
 }
-
 ::-webkit-scrollbar-track {
-    background: url("/static/data/assets/css/images/overlay.png");
+    background:transparent;
 }
 ::-webkit-scrollbar-thumb {
     border-radius: 3px;
 }
 
 body:hover::-webkit-scrollbar-thumb {
-    background: #e6ebe6;
+    background:transparent;
 }
 body.scrolling::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb:horizontal:hover, 
