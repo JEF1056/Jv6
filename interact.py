@@ -203,7 +203,6 @@ try:
 except Exception as e:
     print(e)
     pass
-
 def get_history(message):
     try:
         hist=""
@@ -264,11 +263,10 @@ async def on_message(message):
             t1=time.time()-30
             pickle.dump({"t1":t1,"settings":args,"history":[], "user_version":0}, open("hist/"+str(message.guild.id)+".p", "wb"))
         if user_version != current_version:
-            for version_num in range(current_version-2, current_version+1):
+            for version_num in range(user_version+1, current_version+1):
                 try:
                     await message.channel.send(embed=build_versions.version_message(version_num, client, prefix))
                 except: pass
-            user_version=current_version
     if message.content.lower() == prefix+"-h":
         embed=await build_versions.make_help(dbli, client, prefix)
         await message.channel.send(embed=embed, delete_after=150)
@@ -443,7 +441,7 @@ async def on_message(message):
             if len(get_history(message).replace("> ","").split("\n")) >=4:
                 if avg_similarity(settings.max_history,get_history(message).replace("> ","").split("\n")) >= 0.35 and settings.auto_seed == True:
                     settings.seed=random.randint(0,9999999999)
-            pickle.dump({"t1":round(time.time()),"settings":settings,"history":history,"user_version":user_version}, open("hist/"+str(message.guild.id)+".p", "wb"))
+            pickle.dump({"t1":round(time.time()),"settings":settings,"history":history,"user_version":current_version}, open("hist/"+str(message.guild.id)+".p", "wb"))
             out_text = tokenizer.decode(out_ids, skip_special_tokens=True)
             await message.channel.send(out_text)
             try:
