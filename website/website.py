@@ -57,35 +57,38 @@ def submit():
         inp = request.json
         print(inp)
         print(type(inp))
+        server=["model", "model_checkpoint", "device"]
+        client_side=["temperature","top_k","top_p"]
+        privledged=["no_sample","seed", "auto_seed", "max_history", "max_length"]
+        limiters={"temperature":{"max": 1, "type":float}, "top_k":{"max": float("inf"), "type":int}, "top_p":{"max": 1, "type":float},
+        "no_sample":{"type":str2bool}, "seed":{"max": float("inf"), "type":int}, "auto_seed":{"type":str2bool}, 
+        "max_history":{"max": 10, "type":int}, "max_length":{"max": 20, "type":int}}
         if int(inp["guild_id"]) != 0:
-            for key, value in pickle.load(open("../hist/"+str(inp["guild_id"])+".p", "rb")).items():
-                globals()[str(key)]=value
-            alt_settings=vars(settings)
-            server=["model", "model_checkpoint", "device"]
-            client_side=["temperature","top_k","top_p"]
-            privledged=["no_sample","seed", "auto_seed", "max_history", "max_length"]
-            limiters={"temperature":{"max": 1, "type":float}, "top_k":{"max": float("inf"), "type":int}, "top_p":{"max": 1, "type":float},
-            "no_sample":{"type":str2bool}, "seed":{"max": float("inf"), "type":int}, "auto_seed":{"type":str2bool}, 
-            "max_history":{"max": 10, "type":int}, "max_length":{"max": 20, "type":int}}
-            if inp["setting"] in server:
-                return {"state":False, "message":""+str(inp["setting"])+" is a server-side setting, and cannot be changed."}
-            elif inp["setting"] in privledged and user_status==False:
-                return {"state":False, "message":""+str(inp["setting"])+" is a supporter-only setting. <a href=https://top.gg/bot/410253782828449802/vote>vote for Jade on top.gg</a>"}
-            elif (inp["setting"] in client_side) or inp["setting"] in privledged and user_status==True:
-                ch=limiters[inp["setting"]]["type"](inp["value"])
-                if limiters[inp["setting"]]["type"] == float or limiters[inp["setting"]]["type"] == int:
-                    if limiters[inp["setting"]]["max"] >= ch and ch >= 0:
+            if inp["value"] == "" or inp["setting"] not in limiters:
+                return {"state":False, "message":"Cannot Input Null Value!!"}
+            else:
+                for key, value in pickle.load(open("../hist/"+str(inp["guild_id"])+".p", "rb")).items():
+                    globals()[str(key)]=value
+                alt_settings=vars(settings)
+                if inp["setting"] in server:
+                    return {"state":False, "message":""+str(inp["setting"])+" is a server-side setting, and cannot be changed."}
+                elif inp["setting"] in privledged and user_status==False:
+                    return {"state":False, "message":""+str(inp["setting"])+" is a supporter-only setting. <a href=https://top.gg/bot/410253782828449802/vote>vote for Jade on top.gg</a>"}
+                elif (inp["setting"] in client_side) or inp["setting"] in privledged and user_status==True:
+                    ch=limiters[inp["setting"]]["type"](inp["value"])
+                    if limiters[inp["setting"]]["type"] == float or limiters[inp["setting"]]["type"] == int:
+                        if limiters[inp["setting"]]["max"] >= ch and ch >= 0:
+                            og=alt_settings[inp["setting"]]
+                            alt_settings[inp["setting"]]=ch
+                            pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("../hist/"+inp["guild_id"]+".p", "wb"))
+                            return {"state":True, "message":""+str(inp["setting"])+" changed from "+str(og)+" to "+str(inp["value"])+""}
+                        else:
+                            return {"state":False, "message":str(inp["setting"])+" could not be changed from "+str(alt_settings[inp["setting"]])+" to "+str(inp["value"])+" becasue it is <= 0 or >= "+str(limiters[inp["setting"]]["max"])+""}
+                    else:
                         og=alt_settings[inp["setting"]]
                         alt_settings[inp["setting"]]=ch
                         pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("../hist/"+inp["guild_id"]+".p", "wb"))
-                        return {"state":True, "message":""+str(inp["setting"])+" changed from "+str(og)+" to "+str(inp["value"])+""}
-                    else:
-                        return {"state":False, "message":str(inp["setting"])+" could not be changed from "+str(alt_settings[inp["setting"]])+" to "+str(inp["value"])+" becasue it is <= 0 or >= "+str(limiters[inp["setting"]]["max"])+""}
-                else:
-                    og=alt_settings[inp["setting"]]
-                    alt_settings[inp["setting"]]=ch
-                    pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("../hist/"+inp["guild_id"]+".p", "wb"))
-                    return {"state":True, "message":""+str(inp["setting"])+" changed from "+str(og)+" to "+str(ch)+""}
+                        return {"state":True, "message":""+str(inp["setting"])+" changed from "+str(og)+" to "+str(ch)+""}
             else:
                 return {"state":False, "message":""+str(inp["setting"])+" is not a valid setting."}
         else:
