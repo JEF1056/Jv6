@@ -43,7 +43,8 @@ function send_change(data) {
         .then(res => return_data = res)
         .then(() => console.log(return_data))
         .catch(err => console.error(err));
-        
+    
+    console.log(return_data);
     if (return_data["state"]==true) {
         document.getElementById("message").class = "message_green";
         document.getElementById("message").innerHTML = return_data["message"];
