@@ -41,11 +41,12 @@ function send_change(data) {
         .then(res => res.json())
         .then(res => console.log(res))
         .catch(err => console.error(err));
-        if (res["state"]==true) {
-            document.getElementById("message").class = "message_green";
-            document.getElementById("message").innerHTML = res["message"];
-        } else {
-            document.getElementById("message").class = "message_red";
-            document.getElementById("message").innerHTML = res["message"];
-        };
+        
+    if (res["state"]==true) {
+        document.getElementById("message").class = "message_green";
+        document.getElementById("message").innerHTML = res["message"];
+    } else {
+        document.getElementById("message").class = "message_red";
+        document.getElementById("message").innerHTML = res["message"];
+    };
 }
