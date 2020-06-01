@@ -250,7 +250,7 @@ async def on_message(message):
     if message.content.lower().startswith(prefix):
         history=[]
         settings=args1
-        user_version=0
+        user_version=-1
         try:
             user_status=await dbli.get_user_vote(user_id=message.author.id)
         except:
@@ -261,7 +261,7 @@ async def on_message(message):
         except Exception as e:
             args.seed=random.randint(0,9999999999)
             t1=time.time()-30
-            pickle.dump({"t1":t1,"settings":args,"history":[], "user_version":0}, open("hist/"+str(message.guild.id)+".p", "wb"))
+            pickle.dump({"t1":t1,"settings":args,"history":[], "user_version":current_version}, open("hist/"+str(message.guild.id)+".p", "wb"))
         if user_version != current_version:
             for version_num in range(user_version+1, current_version+1):
                 try:
