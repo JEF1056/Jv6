@@ -42,7 +42,6 @@ function send_change(data) {
         .then(
             function(json){
                 if (json["state"]==true) {
-                    location.reload();
                     document.getElementById("message").className  = "message_green";
                     document.getElementById("message").innerHTML = json["message"];
                 } else {
