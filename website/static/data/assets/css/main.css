@@ -40,14 +40,14 @@ p.message_red {
     border-style: none none none solid;
     border-color: #ff9988;
     border-width: 6px;
-    background-color: #ffccbb;
+    background-color: #ffee88;
     padding: 0.7em 1.5em 0.7em 1.5em;
 }
 
 p.message_green {
     border-style: none none none solid;
     border-color: #aaff88;
-    background-color: #ccffb8;
+    background-color: #eeffee;
     padding: 0.7em 1.5em 0.7em 1.5em;
 }
 
