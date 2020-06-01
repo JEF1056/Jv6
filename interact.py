@@ -237,7 +237,7 @@ async def on_ready():
     print('Logged in as '+client.user.name+' (ID:'+str(client.user.id)+') | Connected to '+str(len(client.guilds))+' servers | Connected to '+ str(len(set(client.get_all_members()))) +' users')
     print('--------')
     print("Discord.py verison: " + discord.__version__)
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=" the messages pass by ✨✨"))
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="everyone talk ✨✨"))
     update_guilds.start()
 
 prefix=config["prefix"]
