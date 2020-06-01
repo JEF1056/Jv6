@@ -89,8 +89,8 @@ def submit():
                         alt_settings[inp["setting"]]=ch
                         pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("../hist/"+inp["guild_id"]+".p", "wb"))
                         return {"state":True, "message":""+str(inp["setting"])+" changed from "+str(og)+" to "+str(ch)+""}
-            else:
-                return {"state":False, "message":""+str(inp["setting"])+" is not a valid setting."}
+                else:
+                    return {"state":False, "message":""+str(inp["setting"])+" is not a valid setting."}
         else:
             return {"state":False, "message":"No Guild Selected!"}
 	
