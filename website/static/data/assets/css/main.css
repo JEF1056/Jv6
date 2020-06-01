@@ -36,23 +36,29 @@ footer, header, hgroup, menu, nav, section {
     width: 50%;
 }
 
-* {
-    scrollbar-width: thin;
-    scrollbar-color: #e6ebe6 transparent;
+::-webkit-scrollbar {
+    width: 6px;
+    height: 12px;
 }
-  
-  /* Works on Chrome/Edge/Safari */
-*::-webkit-scrollbar {
-    width: 12px;
-}
-*::-webkit-scrollbar-track {
+
+::-webkit-scrollbar-track {
     background: transparent;
 }
-*::-webkit-scrollbar-thumb {
-    opacity: 100%;
-    background-color: #e6ebe6;
-    border-radius: 20px;
-    border: 3px solid #fdfffd;
+::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 3px;
+}
+body:hover::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+body.scrolling::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:horizontal:hover, 
+::-webkit-scrollbar-thumb:vertical:hover {
+    background: rgba(153, 153, 153, 1);
+}
+::-webkit-scrollbar-thumb:horizontal:active,
+::-webkit-scrollbar-thumb:vertical:active {   
+    background: rgba(153, 153, 153, 1);
 }
 
 p.message_red {
