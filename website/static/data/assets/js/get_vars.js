@@ -45,6 +45,7 @@ function send_change(data) {
                     document.getElementById("message").className  = "message_green";
                     document.getElementById("message").innerHTML = json["message"];
                     guild_settings[data["guild_id"]]["settings"][data["setting"]]=data["value"]
+                    console.log(guild_settings[data["guild_id"]]["settings"][data["setting"]])
                     document.getElementById(data["setting"]).innerHTML = guild_settings[data["guild_id"]]["settings"][data["setting"]]
                 } else {
                     document.getElementById("message").className  = "message_red";
