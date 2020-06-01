@@ -68,23 +68,24 @@ def submit():
             "no_sample":{"type":str2bool}, "seed":{"max": float("inf"), "type":int}, "auto_seed":{"type":str2bool}, 
             "max_history":{"max": 10, "type":int}, "max_length":{"max": 20, "type":int}}
             if inp["setting"] in server:
-                return {"state":False, "message":"<code>"+str(inp["setting"])+"</code> is a server-side setting, and cannot be changed."}
+                return {"state":False, "message":""+str(inp["setting"])+" is a server-side setting, and cannot be changed."}
             elif inp["setting"] in privledged and user_status==False:
-                return {"state":False, "message":"<code>"+str(inp["setting"])+"</code> is a supporter-only setting. <a href=https://top.gg/bot/410253782828449802/vote>vote for Jade on top.gg</a>"}
+                return {"state":False, "message":""+str(inp["setting"])+" is a supporter-only setting. <a href=https://top.gg/bot/410253782828449802/vote>vote for Jade on top.gg</a>"}
             elif (inp["setting"] in client_side) or inp["setting"] in privledged and user_status==True:
                 ch=limiters[inp["setting"]]["type"](inp["value"])
                 if limiters[inp["setting"]]["type"] == float or limiters[inp["setting"]]["type"] == int:
                     if limiters[inp["setting"]]["max"] >= ch and ch >= 0:
-                        return {"state":True, "message":"<code>"+str(inp["setting"])+"</code> changed from <code>"+str(alt_settings[inp["setting"]])+"</code> to <code>"+str(inp["value"])+"</code>"}
                         alt_settings[inp["setting"]]=ch
+                        pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("../hist/"+inp["guild_id"]+".p", "wb"))
+                        return {"state":True, "message":""+str(inp["setting"])+" changed from "+str(alt_settings[inp["setting"]])+" to "+str(inp["value"])+""}
                     else:
-                        return {"state":True, "message":str(inp["setting"])+" could not be changed from <code>"+str(alt_settings[inp["setting"]])+"</code> to <code>"+str(inp["value"])+"</code> becasue it is <code><= 0</code> or <code>>= "+str(limiters[inp["setting"]]["max"])+"</code>"}
+                        return {"state":False, "message":str(inp["setting"])+" could not be changed from "+str(alt_settings[inp["setting"]])+" to "+str(inp["value"])+" becasue it is <= 0 or >= "+str(limiters[inp["setting"]]["max"])+""}
                 else:
-                    return {"state":True, "message":"<code>"+str(inp["setting"])+"<code> changed from <code>"+str(alt_settings[inp["setting"]])+"<code> to <code>"+str(ch)+"<code>"}
                     alt_settings[inp["setting"]]=ch
+                    pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("../hist/"+inp["guild_id"]+".p", "wb"))
+                    return {"state":True, "message":""+str(inp["setting"])+" changed from "+str(alt_settings[inp["setting"]])+" to "+str(ch)+""}
             else:
-                return {"state":True, "message":"<code>"+str(inp["setting"])+"<code> is not a valid setting."}
-            pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("../hist/"+inp["guild_id"]+".p", "wb"))
+                return {"state":False, "message":""+str(inp["setting"])+" is not a valid setting."}
         else:
             return {"state":False, "message":"No Guild Selected!"}
 	
