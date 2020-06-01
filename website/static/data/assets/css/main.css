@@ -38,11 +38,11 @@ footer, header, hgroup, menu, nav, section {
 
 ::-webkit-scrollbar {
     width: 6px !important;
+    display: none;
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 3px;
-    display: none;
 }
 
 body:hover::-webkit-scrollbar-thumb {
