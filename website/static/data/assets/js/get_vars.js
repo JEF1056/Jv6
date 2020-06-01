@@ -36,7 +36,7 @@ function send_change(data) {
         }
     }
     
-    var return_data;
+    let return_data;
     // send post request
     fetch('/submit', options).then(
             function(u){ return u.json();}
