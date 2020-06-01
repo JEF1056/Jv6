@@ -38,7 +38,7 @@ footer, header, hgroup, menu, nav, section {
 
 ::-webkit-scrollbar {
     width: 6px !important;
-    display: none;
+    visibility:hidden;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -47,18 +47,17 @@ footer, header, hgroup, menu, nav, section {
 
 body:hover::-webkit-scrollbar-thumb {
     background: #e6ebe6;
-    display: inline;
 }
 body.scrolling::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb:horizontal:hover, 
 ::-webkit-scrollbar-thumb:vertical:hover {
     background: #e6ebe6;
-    display: inline;
+    visibility:visible;
 }
 ::-webkit-scrollbar-thumb:horizontal:active,
 ::-webkit-scrollbar-thumb:vertical:active {   
     background: #e6ebe6;
-    display: inline;
+    visibility:visible;
 }
 
 p.message_red {
