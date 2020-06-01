@@ -36,6 +36,26 @@ footer, header, hgroup, menu, nav, section {
     width: 50%;
 }
 
+p.message_red {
+    border-style: none none none solid;
+    border-color: #ff9988;
+    border-width: 6px;
+    background-color: #ffebe8;
+    padding: 0.7em 1.5em 0.7em 1.5em;
+}
+
+p.message_green {
+    border-style: none none none solid;
+    border-color: #aaff88;
+    background-color: #eaffe8;
+    padding: 0.7em 1.5em 0.7em 1.5em;
+}
+
+p.message_none {
+    border-style: none;
+    padding: 0.7em 1.5em 0.7em 1.5em;
+}
+
 body {
 	line-height: 1;
 }
