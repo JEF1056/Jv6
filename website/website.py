@@ -9,12 +9,13 @@ import os
 app = Flask(__name__)
 
 with open('../config.json') as json_file:
-  config = json.load(json_file)["website"]
+    config = json.load(json_file)["website"]
+    config_0=json.load(json_file)["website"]
 
 app.secret_key = config["secret_key"]
 global dbli
 client = discord.Client()
-dbli=dbl.DBLClient(client, config["dbltoken"])
+dbli=dbl.DBLClient(client, config_0["dbltoken"])
 
 def str2bool(v):
     if isinstance(v, bool):
