@@ -215,5 +215,5 @@ $(window).scroll(function() {
     clearTimeout($.data(this, 'scrollTimer'));
     $.data(this, 'scrollTimer', setTimeout(function() {
         $('body').removeClass('scrolling');
-    }, 250));
+    }, 1000));
 });

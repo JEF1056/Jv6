@@ -40,18 +40,12 @@ footer, header, hgroup, menu, nav, section {
     width: 6px !important;
 }
 
-::-webkit-scrollbar * {
-    background:transparent;
-}
-::-webkit-scrollbar-track {
-    background:transparent;
-}
 ::-webkit-scrollbar-thumb {
     border-radius: 3px;
 }
 
 body:hover::-webkit-scrollbar-thumb {
-    background:transparent;
+    background: #e6ebe6;
 }
 body.scrolling::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb:horizontal:hover, 
