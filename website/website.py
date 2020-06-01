@@ -9,8 +9,8 @@ import os
 app = Flask(__name__)
 
 with open('../config.json') as json_file:
-    config = json.load(json_file)["website"]
-    config_0=json.load(json_file)["website"]
+    config_0=json.load(json_file)
+    config = config_0["website"]    
 
 app.secret_key = config["secret_key"]
 global dbli
