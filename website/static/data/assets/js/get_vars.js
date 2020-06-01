@@ -36,18 +36,16 @@ function send_change(data) {
         }
     }
     
-    var return_data = {};
     // send post request
     fetch('/submit', options)
         .then(res => res.json())
         .then(res => console.log(res))
-        .then(res => return_data)
-        .catch(err => console.error(err));
-        if (return_data["state"]==true) {
+        .then(res => {if (res["state"]==true) {
             document.getElementById("message").class = "message_green";
-            document.getElementById("message").innerHTML = return_data["message"];
+            document.getElementById("message").innerHTML = res["message"];
         } else {
             document.getElementById("message").class = "message_red";
-            document.getElementById("message").innerHTML = return_data["message"];
-        };
+            document.getElementById("message").innerHTML = res["message"];
+        };})
+        .catch(err => console.error(err));
 }
