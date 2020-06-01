@@ -37,16 +37,18 @@ footer, header, hgroup, menu, nav, section {
 }
 
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 6px !important;
+    background-color: transparent;
 }
 
 ::-webkit-scrollbar-track {
-    background: #ffffff00;
+    background-color: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: #ffffff00;
+    background-color: transparent;
     border-radius: 3px;
 }
+
 body:hover::-webkit-scrollbar-thumb {
     background: #ffffff00;
 }
@@ -54,12 +56,10 @@ body.scrolling::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb:horizontal:hover, 
 ::-webkit-scrollbar-thumb:vertical:hover {
     background: #e6ebe6;
-    border: 3px solid #ffffff00;
 }
 ::-webkit-scrollbar-thumb:horizontal:active,
 ::-webkit-scrollbar-thumb:vertical:active {   
     background: #e6ebe6;
-    border: 3px solid #ffffff00;
 }
 
 p.message_red {
