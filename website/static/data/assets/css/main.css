@@ -38,19 +38,22 @@ footer, header, hgroup, menu, nav, section {
 
 ::-webkit-scrollbar {
     width: 6px !important;
-    background-color: transparent;
+    background: transparent;
+}
+
+::-webkit-scrollbar * {
+    background:transparent;
 }
 
 ::-webkit-scrollbar-track {
     background-color: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: transparent;
     border-radius: 3px;
 }
 
 body:hover::-webkit-scrollbar-thumb {
-    background: #ffffff00;
+    background: #e6ebe6;
 }
 body.scrolling::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb:horizontal:hover, 
