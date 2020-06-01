@@ -242,7 +242,7 @@ async def on_ready():
     update_guilds.start()
 
 prefix=config["prefix"]
-current_version=0
+current_version=1
 global t1, settings, history,user_version
 
 @client.event
