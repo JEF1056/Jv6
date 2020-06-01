@@ -64,7 +64,7 @@ def submit():
         "no_sample":{"type":str2bool}, "seed":{"max": float("inf"), "type":int}, "auto_seed":{"type":str2bool}, 
         "max_history":{"max": 10, "type":int}, "max_length":{"max": 20, "type":int}}
         if int(inp["guild_id"]) != 0 and str(inp["guild_id"])+".p" in os.listdir("../hist"):
-            if inp["value"] == '' or inp["setting"] not in limiters and  inp["setting"]!="reset":
+            if (inp["value"] == '' or inp["setting"] not in limiters) and inp["setting"] != "reset":
                 return {"state":False, "message":"Cannot Input Null Value!!"}
             elif inp["setting"]=="reset":
                 for key, value in pickle.load(open("../hist/"+str(inp["guild_id"])+".p", "rb")).items():
