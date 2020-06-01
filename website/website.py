@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for, render_template, request
 from flask_discord import DiscordOAuth2Session, requires_authorization
 from waitress import serve
 from flask import json as flask_json
-import json
+import json, dbl
 import pickle
 import os
 
@@ -12,6 +12,18 @@ with open('../config.json') as json_file:
   config = json.load(json_file)["website"]
 
 app.secret_key = config["secret_key"]
+global dbli
+dbli=dbl.DBLClient(client, config["dbltoken"])
+
+def str2bool(v):
+    if isinstance(v, bool):
+       return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
 
 app.config["DISCORD_CLIENT_ID"] = config["DISCORD_CLIENT_ID"]  # Discord client ID.
 app.config["DISCORD_CLIENT_SECRET"] = config["DISCORD_CLIENT_SECRET"]  # Discord client secret.
@@ -34,12 +46,46 @@ def callback():
 
 @app.route("/submit/", methods=['POST'])
 @requires_authorization
-def submit():
+async def submit():
+    global dbli
     if request.method == 'POST':
+        try:
+            user_status=await dbli.get_user_vote(user_id=message.author.id)
+        except:
+            user_status=False
         inp = flask_json.dumps(request.json)
         print(inp)
         print(type(inp))
-        return {"state":False, "message":"go die or smth"}
+        if inp["guild_id"] != 0:
+            for key, value in pickle.load(open("hist/"+str(inp["guild_id"])+".p", "rb")).items():
+                globals()[str(key)]=value
+            alt_settings=vars(settings)
+            server=["model", "model_checkpoint", "device"]
+            client_side=["temperature","top_k","top_p"]
+            privledged=["no_sample","seed", "auto_seed", "max_history", "max_length"]
+            limiters={"temperature":{"max": 1, "type":float}, "top_k":{"max": float("inf"), "type":int}, "top_p":{"max": 1, "type":float},
+            "no_sample":{"type":str2bool}, "seed":{"max": float("inf"), "type":int}, "auto_seed":{"type":str2bool}, 
+            "max_history":{"max": 10, "type":int}, "max_length":{"max": 20, "type":int}}
+            if inp["Setting"] in server:
+                return {"state":False, "message":"<code>"+str(inp["Setting"])+"</code> is a server-side setting, and cannot be changed."}
+            elif inp["Setting"] in privledged and user_status==False:
+                return {"state":False, "message":"<code>"+str(inp["Setting"])+"</code> is a supporter-only setting. <a href=https://top.gg/bot/410253782828449802/vote>vote for Jade on top.gg</a>"}
+            elif (inp["Setting"] in client_side) or inp["Setting"] in privledged and user_status==True:
+                ch=limiters[inp["Setting"]]["type"](inp["Value"])
+                if limiters[inp["Setting"]]["type"] == float or limiters[inp["Setting"]]["type"] == int:
+                    if limiters[inp["Setting"]]["max"] >= ch and ch >= 0:
+                        return {"state":True, "message":"<code>"+str(inp["Setting"])+"</code> changed from <code>"+str(alt_settings[inp["Setting"]])+"</code> to <code>"+str(inp["Value"])+"</code>"}
+                        alt_settings[inp["Setting"]]=ch
+                    else:
+                        return {"state":True, "message":str(inp["Setting"])+" could not be changed from <code>"+str(alt_settings[inp["Setting"]])+"</code> to <code>"+str(inp["Value"])+"</code> becasue it is <code><= 0</code> or <code>>= "+str(limiters[inp["Setting"]]["max"])+"</code>"}
+                else:
+                    return {"state":True, "message":"<code>"+str(inp["Setting"])+"<code> changed from <code>"+str(alt_settings[inp["Setting"]])+"<code> to <code>"+str(ch)+"<code>"}
+                    alt_settings[inp["Setting"]]=ch
+            else:
+                return {"state":True, "message":"<code>"+str(inp["Setting"])+"<code> is not a valid setting."}
+            pickle.dump({"t1":t1, "settings":settings,"history":history, "user_version":user_version}, open("hist/"+inp["guild_id"]+".p", "wb"))
+        else:
+            return {"state":False, "message":"No Guild Selected!"}
 	
 @app.route("/data/")
 @requires_authorization
