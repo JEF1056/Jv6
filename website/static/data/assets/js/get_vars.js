@@ -38,11 +38,13 @@ function send_change(data) {
     
     var return_data;
     // send post request
-    fetch('/submit', options)
-        .then(res => res.json())
-        .then(res => return_data = res)
-        .then(() => console.log(return_data))
-        .catch(err => console.error(err));
+    fetch('/submit', options).then(
+            function(u){ return u.json();}
+        ).then(
+            function(json){
+                return_data = json;
+            }
+        )
     
     console.log(return_data);
     if (return_data["state"]==true) {
