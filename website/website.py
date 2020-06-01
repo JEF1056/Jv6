@@ -1,7 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request
 from flask_discord import DiscordOAuth2Session, requires_authorization
 from waitress import serve
-from flask import json as flask_json
 import json, dbl, discord
 import pickle
 import os
@@ -55,7 +54,7 @@ def submit():
             user_status= dbli.get_user_vote(user_id=message.author.id)
         except:
             user_status=False
-        inp = flask_json.loads(request.json)
+        inp = request.json
         print(inp)
         print(type(inp))
         if int(inp["guild_id"]) != 0:
