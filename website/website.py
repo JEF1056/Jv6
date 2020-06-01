@@ -58,7 +58,7 @@ def submit():
         inp = flask_json.dumps(request.json)
         print(inp)
         print(type(inp))
-        if inp["guild_id"] != 0:
+        if int(inp["guild_id"]) != 0:
             for key, value in pickle.load(open("hist/"+str(inp["guild_id"])+".p", "rb")).items():
                 globals()[str(key)]=value
             alt_settings=vars(settings)
