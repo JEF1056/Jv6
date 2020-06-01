@@ -40,8 +40,8 @@ function send_change(data) {
     // send post request
     fetch('/submit', options)
         .then(res => res.json())
-        .then(res => console.log(res))
-        .then(res => return_data=res)
+        .then(res => return_data = res)
+        .then(() => console.log(return_data))
         .catch(err => console.error(err));
         
     if (return_data["state"]==true) {
