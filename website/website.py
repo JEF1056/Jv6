@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for, render_template, request
 from flask_discord import DiscordOAuth2Session, requires_authorization
 from waitress import serve
 from flask import json as flask_json
-import json, dbl
+import json, dbl, discord
 import pickle
 import os
 
@@ -13,6 +13,7 @@ with open('../config.json') as json_file:
 
 app.secret_key = config["secret_key"]
 global dbli
+client = discord.Client()
 dbli=dbl.DBLClient(client, config["dbltoken"])
 
 def str2bool(v):
