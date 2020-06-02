@@ -205,7 +205,8 @@ except Exception as e:
     pass
 def get_history(message):
     try:
-        hist= pickle.load(open("hist/"+str(message.guild.id)+".p", "rb"))["history"]
+        hist=""
+        history= pickle.load(open("hist/"+str(message.guild.id)+".p", "rb"))["history"]
         for i, p in enumerate(history):
             if i % 2 == 0:
                 hist+="> "+tokenizer.decode(p, skip_special_tokens=True)+"\n"
@@ -216,6 +217,7 @@ def get_history(message):
         else:
             return hist
     except Exception as e:
+        print(e)
         return "No History!"
 
 global dbli
