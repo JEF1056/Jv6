@@ -17,12 +17,7 @@ for path in os.listdir("hist"):
 try:
     data = pickle.load(open("hist/user/users.p", "rb"))
     message_total, message_rate, users = data["message_total"],data["message_rate"], data["users"]
-    new_data={}
-    for message in message_rate:
-        try:
-            new_data[message.split(" ")[0]]+=message_rate[message]
-        except:
-            new_data[message.split(" ")[0]]=message_rate[message]
+    new_data={'2020-06-02': message_total}
     print({"message_total":message_total,"message_rate":new_data,"users":users})
     pickle.dump({"message_total":message_total,"message_rate":new_data,"users":users}, open("hist/user/users.p", "wb"))
     print(os.path.join("hist",path))
