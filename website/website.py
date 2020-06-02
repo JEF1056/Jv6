@@ -131,7 +131,7 @@ def data():
             y.append(cache_data["message_count"])
         fig = px.line(x=x, y=y)
         fig.update_xaxes(rangeslider_visible=True)
-        fig.write_html("website/static/data/assets/html/temporal.html")
+        fig.write_html("static/data/assets/html/temporal.html")
     try:
         return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
     except:

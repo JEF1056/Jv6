@@ -130,3 +130,4 @@ run0/**
 *.p
 .vscode/**
 .run?/**
+temporal.html
