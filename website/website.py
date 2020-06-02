@@ -56,7 +56,7 @@ def submit():
         inp = request.json
         print(inp)
         try:
-            user_status= dbli.get_user_vote(user_id=int(inp["user_id"]))
+            user_status= await dbli.get_user_vote(user_id=int(inp["user_id"]))
         except Exception as e:
             print(e)
             user_status=False
@@ -85,7 +85,7 @@ def submit():
                     return {"state":False, "message":""+str(inp["setting"])+" is a server-side setting, and cannot be changed."}
                 elif inp["setting"] in privledged and user_status==False:
                     return {"state":False, "message":""+str(inp["setting"])+" is a supporter-only setting. <a href=https://top.gg/bot/410253782828449802/vote>vote for Jade on top.gg</a>"}
-                elif (inp["setting"] in client_side) or inp["setting"] in privledged and user_status==True:
+                elif (inp["setting"] in client_side) or (inp["setting"] in privledged and user_status==True):
                     ch=limiters[inp["setting"]]["type"](inp["value"])
                     if limiters[inp["setting"]]["type"] == float or limiters[inp["setting"]]["type"] == int:
                         if limiters[inp["setting"]]["max"] >= ch and ch >= 0:
