@@ -51,7 +51,13 @@
 								</p>
 								<section>
 									<div class="row">
-                                        <script>document.getElementById("message").innerHTML = {{guild}}.length;</script>
+                                        <script>
+                                            if ({{num_guilds}} > 0) {
+                                                document.getElementById("message").innerHTML = "Click any of the icons below to change Jade's settings in that server!";
+                                            } else {
+                                                document.getElementById("message").innerHTML = "You're not in any servers with Jade!! <s>Why are you even here??</s><br><a href='https://discord.com/oauth2/authorize?client_id=410253782828449802&permissions=0&scope=bot'></a>";
+                                            }
+                                        </script>
                                         {% for guild in guilds %}
                                             <div class="col-4 col-6-medium col-12-small">
                                                 <a href="#settings" onclick="setGuild({{guild.id}}n,&quot;{{guild.name}}&quot;,guild_settings,&quot;{{guild.icon_hash}}&quot;); guild_id={{guild.id}}n;" class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 alt=""></a>

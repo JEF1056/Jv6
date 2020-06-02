@@ -118,7 +118,7 @@ def data():
             guild_settings[int(guild.id)]["settings"]=vars(guild_settings[int(guild.id)]["settings"])
     guild_settings=json.dumps(guild_settings)
     
-    return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", user=user, guilds=guilds_data, guild_settings=guild_settings)
+    return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", user=user, guilds=guilds_data, num_guilds=len(guilds_data) guild_settings=guild_settings)
 
 if __name__ == "__main__":
   #app.run(ssl_context='adhoc')
