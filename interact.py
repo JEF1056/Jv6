@@ -245,9 +245,11 @@ current_version=1
 global t1, settings, history,user_version, current_local_total
 try:
     udata=pickle.load(open("hist/user/users.p", "rb"))
-    current_local_total=udata["message_rate"][len(udata["message_rate"]-1)]
 except:
     pickle.dump({"message_total":0,"message_rate":[{"timestamp":round(time.time()), "message_count":0}],"users":{}}, open("hist/user/users.p", "wb"))
+try:
+    current_local_total=udata["message_rate"][len(udata["message_rate"]-1)]
+except:
     current_local_total={"timestamp":round(time.time()), "message_count":0}
 
 @client.event
