@@ -24,7 +24,7 @@
 						<a href="#guilds" class="icon solid fa-server"><span>Guilds</span></a>
                         <a href="#settings" class="icon solid fa-sliders-h"><span>Settings</span></a>
                         <a href="#info" class="icon solid fa-info"><span>Info</span></a>
-                        <a href="https://jadeai.ml/" onclick='for (var it in $.cookie()) $.removeCookie(it);' class="icon solid fa-sign-out-alt"><span>Logout</span></a>
+                        <a href="https://jadeai.ml/" onclick="document.cookie.split(';').forEach(function(c) {document.cookie = c.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';});" class="icon solid fa-sign-out-alt"><span>Logout</span></a>
 					</nav>
 
 				<!-- Main -->
