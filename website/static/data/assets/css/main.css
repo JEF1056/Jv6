@@ -71,6 +71,7 @@ p.message_red {
 p.message_green {
     border-style: none none none solid;
     border-color: #aaff88;
+    border-width: 6px;
     background-color: #eaffe8;
     padding: 0.7em 1.5em 0.7em 1.5em;
 }

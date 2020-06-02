@@ -453,7 +453,7 @@ async def on_message(message):
             history.append(out_ids)
             history = history[-(2*args.max_history+1):]
             if len(get_history(message).replace("> ","").split("\n")) >=4:
-                if avg_similarity(settings.max_history,get_history(message).replace("> ","").split("\n")) >= 0.35 and settings.auto_seed == True:
+                if avg_similarity(settings.max_history,get_history(message).replace("> ","").split("\n")) >= 0.3 and settings.auto_seed == True:
                     settings.seed=random.randint(0,9999999999)
             pickle.dump({"t1":round(time.time()),"settings":settings,"history":history,"user_version":current_version}, open("hist/"+str(message.guild.id)+".p", "wb"))
             user_data["message_count"]+=1
