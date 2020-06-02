@@ -194,7 +194,7 @@
                                     <h2>Info</h2>
                                 </header>
                                 <div id="graph">
-                                    <input type="button" onclick="$('#graph').load('/static/data/assets/html/temporal.html');" value="View Message Statistics" />
+                                    <input type="button" onclick="document.getElementById('graph').innerHTML='<p>Loading ...</p>'; $('#graph').load('/static/data/assets/html/temporal.html');" value="View Message Statistics" />
                                 </div>
 							</article>
 					</div>
