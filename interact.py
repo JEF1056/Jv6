@@ -447,7 +447,6 @@ async def on_message(message):
                 out_ids = sample_sequence(personality, history, tokenizer, model, settings)
             history.append(out_ids)
             history = history[-(2*args.max_history+1):]
-            print(history)
             if len(get_history(message).replace("> ","").split("\n")) >=4:
                 if avg_similarity(settings.max_history,get_history(message).replace("> ","").split("\n")) >= 0.35 and settings.auto_seed == True:
                     settings.seed=random.randint(0,9999999999)
