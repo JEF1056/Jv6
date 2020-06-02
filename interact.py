@@ -459,7 +459,8 @@ async def on_message(message):
             user_data["message_count"]+=1
             user_data["timestamp"]=round(time.time())
             udata["users"][message.author.id]=user_data
-            new_data=udata["message_rate"][str(date.today())]+1
+            new_data=udata["message_rate"]
+            new_data[str(date.today())]=udata["message_rate"][str(date.today())]+1
             pickle.dump({"message_total":udata["message_total"]+1,"message_rate":new_data,"users":udata["users"]}, open("hist/user/users.p", "wb"))
             out_text = tokenizer.decode(out_ids, skip_special_tokens=True)
             await message.channel.send(out_text)
