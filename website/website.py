@@ -85,7 +85,7 @@ def submit():
                 for key, value in pickle.load(open("../hist/"+str(inp["guild_id"])+".p", "rb")).items():
                     globals()[str(key)]=value
                 alt_settings=vars(settings)
-                alt_settings["temperature"], alt_settings["top_p"], alt_settings["top_k"], alt_settings["seed"]=0.7, 0.75, 40, random.randint(0,9999999999)
+                alt_settings["temperature"], alt_settings["top_p"], alt_settings["top_k"], alt_settings["seed"]=0.75, 0.9, 40, random.randint(0,9999999999)
                 alt_settings["auto_seed"], alt_settings["max_history"], alt_settings["max_length"], alt_settings["no_sample"]=True, 4, 10, False
                 pickle.dump({"t1":t1, "settings":settings,"history":[], "user_version":user_version}, open("../hist/"+inp["guild_id"]+".p", "wb"))
                 return {"state":False, "message":"Reset Save (refresh the page)"}
