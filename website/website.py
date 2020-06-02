@@ -134,9 +134,11 @@ def data():
         x.append(cache_data)
         y.append(cached_history[cache_data])
     try:
-        return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", graph_x=x, graph_y=y, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
+        return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", totalmessages=udata["message_total"],
+                               graph_x=x, graph_y=y, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
     except:
-        return render_template("data.html", avatar_url="/static/data/images/fallbackpfp.png", graph_x=x, graph_y=y, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
+        return render_template("data.html", avatar_url="/static/data/images/fallbackpfp.png", totalmessages=udata["message_total"],
+                                graph_x=x, graph_y=y, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
         
 if __name__ == "__main__":
   #app.run(ssl_context='adhoc')
