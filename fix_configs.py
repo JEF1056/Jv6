@@ -8,5 +8,6 @@ for path in os.listdir("hist"):
         settings.model_checkpoint="run3"
         pickle.dump({"t1":t1,"settings":settings,"history":history,"user_version":1},open(os.path.join("hist",path),"wb"))
         print(os.path.join("hist",path))
-    except:
+    except Exception as e:
+        print(e)
         print("ERR",os.path.join("hist",path))
