@@ -53,7 +53,7 @@
                                             if ({{num_guilds}} > 0) {
                                                 document.getElementById("guild_desc_msg").innerHTML = "Click any of the icons below to change Jade's settings in that server!";
                                             } else {
-                                                document.getElementById("guild_desc_msg").innerHTML = "You aren't in any servers with Jade! <s>Why... are you even here?</s> Invite Jade <a href=https://discord.com/api/oauth2/authorize?client_id=410253782828449802&permissions=3088&redirect_uri=https%3A%2F%2Fjadeai.ml%2Fauth&scope=bot>here</a><br>Note: you will need to run a <code>JD [message]</code> before the guild will appear here.";
+                                                document.getElementById("guild_desc_msg").innerHTML = "You aren't in any servers with Jade! <s>Why... are you even here?</s> <a href=https://discord.com/api/oauth2/authorize?client_id=410253782828449802&permissions=3088&redirect_uri=https%3A%2F%2Fjadeai.ml%2Fauth&scope=bot>Invite Jade</a><br>Note: you will need to run a <code>JD [message]</code> before the guild will appear here.";
                                             }
                                         </script>
                                         {% for guild in guilds %}
