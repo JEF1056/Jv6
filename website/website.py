@@ -122,7 +122,7 @@ def data():
             guild_settings[int(guild.id)]["settings"]=vars(guild_settings[int(guild.id)]["settings"])
     guild_settings=json.dumps(guild_settings)
     udata=pickle.load(open("../hist/user/users.p", "rb"))
-    if udata["message_rate"] != cached_history or "temporal.html" not in os.listdir("static/data/assets/html/temporal.html"):
+    if udata["message_rate"] != cached_history or "temporal.html" not in os.listdir("static/data/assets/html/"):
         cached_history=udata["message_rate"]
         x=[]
         y=[]
