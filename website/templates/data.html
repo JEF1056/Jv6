@@ -194,7 +194,7 @@
                                     <h2>Info</h2>
                                 </header>
                                 <div id="graph">
-                                    <input type="button" onclick="get_graph()" value="View Message Statistics" />
+                                    <input type="button" onclick="$("#graph").load("/static/data/assets/html/temporal.html");" value="View Message Statistics" />
                                 </div>
 							</article>
 					</div>
@@ -213,11 +213,6 @@
 			<script src="/static/data/assets/js/breakpoints.min.js"></script>
 			<script src="/static/data/assets/js/util.js"></script>
             <script src="/static/data/assets/js/main.js"></script>
-            <script> 
-                var get_graph = $(function(){
-                  $("#graph").load("/static/data/assets/html/temporal.html"); 
-                }); 
-            </script>
 
 	</body>
 </html>
