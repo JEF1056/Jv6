@@ -17,7 +17,7 @@ app.secret_key = config["secret_key"]
 global dbli
 client = discord.Client()
 dbli=dbl.DBLClient(client, config_0["dbltoken"])
-cached_history=pickle.load(open("hist/user/users.p", "rb"))["message_rate"]
+cached_history=pickle.load(open("../hist/user/users.p", "rb"))["message_rate"]
 
 def str2bool(v):
     if isinstance(v, bool):
