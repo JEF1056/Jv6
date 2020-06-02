@@ -449,6 +449,7 @@ async def on_message(message):
                 out_ids = sample_sequence(personality, history, tokenizer, model, settings)
             history.append(out_ids)
             history = history[-(2*args.max_history+1):]
+            print(history)
             if len(get_history(message).replace("> ","").split("\n")) >=4:
                 if avg_similarity(settings.max_history,get_history(message).replace("> ","").split("\n")) >= 0.35 and settings.auto_seed == True:
                     settings.seed=random.randint(0,9999999999)
@@ -460,6 +461,7 @@ async def on_message(message):
             if round(time.time())-current_local_total["timestamp"] > 1800:
                 print("updating the statistics")
                 udata["message_rate"].append({"timestamp":round(time.time()), "message_count":current_local_total["message_count"]})
+                current_local_total={"timestamp":round(time.time()), "message_count":0}
             pickle.dump({"message_total":udata["message_total"]+1,"message_rate":udata["message_rate"],"users":udata["users"]}, open("hist/user/users.p", "wb"))
             out_text = tokenizer.decode(out_ids, skip_special_tokens=True)
             await message.channel.send(out_text)
