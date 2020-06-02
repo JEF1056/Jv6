@@ -56,7 +56,7 @@
                                                 <a href="#settings" onclick="setGuild({{guild.id}}n,&quot;{{guild.name}}&quot;,guild_settings,&quot;{{guild.icon_hash}}&quot;); guild_id={{guild.id}}n;" class="image fit"><img id="{{guild.id}}" src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512, width=250 alt=""></a>
                                             </div>
                                             <script>
-                                                var image = document.getElementById({{guild.id}});
+                                                var image = document.getElementById("{{guild.id}}");
                                                 image.onerror = function () {
                                                 console.log('error loading ' + this.src);
                                                 this.src = '/static/data/images/fallbackpfp.png';
