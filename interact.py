@@ -8,6 +8,7 @@ import pickle, discord, re, random, os, dbl, warnings, torch
 from nltk.corpus import stopwords 
 from nltk.tokenize import word_tokenize
 import time, requests, datetime
+from datetime import date
 from discord.ext.tasks import loop
 import json, build_versions
 
@@ -242,19 +243,15 @@ async def on_ready():
 
 prefix=config["prefix"]
 current_version=1
-global t1, settings, history,user_version, current_local_total
+global t1, settings, history,user_version
 try:
     udata=pickle.load(open("hist/user/users.p", "rb"))
 except:
-    pickle.dump({"message_total":0,"message_rate":[{"timestamp":round(time.time()), "message_count":0}],"users":{}}, open("hist/user/users.p", "wb"))
-try:
-    current_local_total=udata["message_rate"][len(udata["message_rate"]-1)]
-except:
-    current_local_total={"timestamp":round(time.time()), "message_count":0}
+    pickle.dump({"message_total":0,"message_rate":{},"users":{}}, open("hist/user/users.p", "wb"))
 
 @client.event
 async def on_message(message):
-    global personality, tokenizer, model, client, t1, settings, history,user_version, current_local_total
+    global personality, tokenizer, model, client, t1, settings, history,user_version
     if message.content.lower().startswith(prefix):
         history=[]
         settings=args1
@@ -462,12 +459,8 @@ async def on_message(message):
             user_data["message_count"]+=1
             user_data["timestamp"]=round(time.time())
             udata["users"][message.author.id]=user_data
-            current_local_total["message_count"]+=1
-            if round(time.time())-current_local_total["timestamp"] > 7200:
-                print("updating the statistics")
-                udata["message_rate"].append({"timestamp":round(time.time()), "message_count":current_local_total["message_count"]})
-                current_local_total={"timestamp":round(time.time()), "message_count":0}
-            pickle.dump({"message_total":udata["message_total"]+1,"message_rate":udata["message_rate"],"users":udata["users"]}, open("hist/user/users.p", "wb"))
+            new_data=udata["message_rate"][str(date.today())]+1
+            pickle.dump({"message_total":udata["message_total"]+1,"message_rate":new_data,"users":udata["users"]}, open("hist/user/users.p", "wb"))
             out_text = tokenizer.decode(out_ids, skip_special_tokens=True)
             await message.channel.send(out_text)
             try:

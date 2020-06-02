@@ -1,4 +1,5 @@
 import os, pickle, time
+import datetime
 for path in os.listdir("hist"):
     try:
         data = pickle.load(open(os.path.join("hist",path),"rb"))
@@ -12,3 +13,18 @@ for path in os.listdir("hist"):
     except Exception as e:
         print(e)
         print("ERR",os.path.join("hist",path))
+        
+    try:
+        data = pickle.load(open("hist/user/users.p", "rb"))
+        message_total, message_rate, users = data["message_total"],data["message_rate"], data["users"]
+        new_data={}
+        for message in message_rate:
+            try:
+                new_data[str(datetime.datetime.fromtimestamp(round(message["timestamp"])))]+=message["message_count"]
+            except:
+                new_data[str(datetime.datetime.fromtimestamp(round(message["timestamp"])))]=message["message_count"]
+        print({"message_total":message_total,"message_rate":new_data,"users":users})
+        #pickle.dump({"message_total":message_total,"message_rate":new_data,"users":users}, open("hist/user/users.p", "wb"))
+        print(os.path.join("hist",path))
+    except Exception as e:
+        print(e)
