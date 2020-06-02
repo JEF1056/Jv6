@@ -37,7 +37,7 @@ async def make_help(dbli, client, prefix):
     embed.add_field(name=prefix+"[message]",value="Talks to Jade! (pretty simple) \n```"+prefix+"hello, how are you?```", inline=False)
     embed.add_field(name=prefix+"-h",value="Help menu (you're right here!!) \n```"+prefix+"-h```", inline=False)
     embed.add_field(name=prefix+"-v",value="[Vote for Jade!](https://top.gg/bot/410253782828449802/vote) enables settings that are supporter-only.\n```"+prefix+"-v```", inline=False)
-    embed.add_field(name=prefix+"-p",value="Shows the ping between Jade's server and Discord. \n```"+prefix+"-p```", inline=False)
+    embed.add_field(name=prefix+"-p",value="Shows your user profile and any data Jade has collected about you! \n```"+prefix+"-p```", inline=False)
     embed.add_field(name=prefix+"-r [(optional) arg1] [(optional) arg2]",value="Reset function. Contains arguments: `history` and `settings` \n```"+prefix+"-r history settings```", inline=False)
     embed.add_field(name=prefix+"-s [setting] [value]",value="Jade's neural network settings. (no arguments for a panel) \nContains (working) arguments: `seed`,`temperature`,`top_k`,`top_p` \n```"+prefix+"-s seed 100```", inline=False)
     embed.set_image(url=await dbli.get_widget_large(client.user.id))
