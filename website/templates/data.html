@@ -193,7 +193,9 @@
 								<header>
                                     <h2>Info</h2>
                                 </header>
-                                <div id="graph"></div>
+                                <div id="graph">
+                                    <input type="button" onclick="get_graph()" value="View Message Statistics" />
+                                </div>
 							</article>
 					</div>
 
@@ -212,7 +214,7 @@
 			<script src="/static/data/assets/js/util.js"></script>
             <script src="/static/data/assets/js/main.js"></script>
             <script> 
-                $(function(){
+                var get_graph = $(function(){
                   $("#graph").load("/static/data/assets/html/temporal.html"); 
                 }); 
             </script>
