@@ -103,7 +103,7 @@ async def submit():
                 else:
                     return {"state":False, "message":""+str(inp["setting"])+" is not a valid setting."}
         else:
-            return {"state":False, "message":"No Guild Selected!"}
+            await return {"state":False, "message":"No Guild Selected!"}
 	
 @app.route("/data/")
 @requires_authorization
