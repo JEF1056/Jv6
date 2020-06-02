@@ -7,7 +7,7 @@ from discord_webhook import DiscordWebhook, DiscordEmbed
 import pickle, discord, re, random, os, dbl, warnings, torch
 from nltk.corpus import stopwords 
 from nltk.tokenize import word_tokenize
-import time, requests
+import time, requests, datetime
 from discord.ext.tasks import loop
 import json, build_versions
 
@@ -285,6 +285,17 @@ async def on_message(message):
             await message.delete()
         except:
             pass
+    elif message.content.lower() == prefix+"-p":
+        embed=discord.Embed(title="User Profile: "+ str(message.author), url="https://jadeai.ml", color=0x80ff80)
+        embed.set_thumbnail(url=message.author.avatar_url)
+        embed.add_field(name="Last seen", value= str(datetime.datetime.fromtimestamp(user_data["timestamp"]).strftime('%Y-%m-%d %H:%M:%S')), inline=False)
+        embed.add_field(name="Number of Messages", value= str(user_data["message_count"]), inline=False)
+        embed.set_footer(text=str(time.strftime('%X %x %Z')))
+        await message.channel.send(embed=embed, delete_after=150)
+        try:
+            await message.delete()
+        except:
+            pass
     elif message.content.lower() == prefix+"-v":
         embed=discord.Embed(title="Voting Link", url="https://top.gg/bot/410253782828449802/vote", color=0x80ff80)
         embed.set_image(url=await dbli.get_widget_large(client.user.id))
@@ -298,17 +309,10 @@ async def on_message(message):
             await message.delete()
         except:
             pass
-    elif message.content.lower() == prefix+"-p":
-        embed= discord.Embed(title="Ping", description=str(client.latency), color=0x80ff80)
-        await message.channel.send(embed=embed, delete_after=100)
-        try:
-            await message.delete()
-        except:
-            pass
     elif message.content.lower() == prefix+"-s":
         history=get_history(message)
         settings=vars(settings)
-        embed= discord.Embed(title="Settings", description="__                                                                                      __\nServer-Side Settings  🔒", color=0x80ff80)
+        embed= discord.Embed(title="Settings", url="https://jadeai.ml", description="__                                                                                      __\nServer-Side Settings  🔒", color=0x80ff80)
         embed.add_field(name="model", value=str(settings["model"]), inline=True)
         embed.add_field(name="model_checkpoint", value=str(settings["model_checkpoint"]), inline=True)
         embed.add_field(name="device", value=str(settings["device"]), inline=True)
