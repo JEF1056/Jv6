@@ -117,6 +117,12 @@ def submit():
         else:
             return {"state":False, "message":"No Guild Selected!"}
 	
+@app.route("/logout/")
+@requires_authorization
+def logout():
+    discord.revoke()
+    return redirect(url_for(".login"))
+ 
 @app.route("/data/")
 @requires_authorization
 
@@ -136,7 +142,7 @@ def data():
     udata=pickle.load(open("../hist/user/users.p", "rb"))
     if udata["message_rate"] != cached_history or "temporal.html" not in os.listdir("static/data/assets/html/"):
         cached_history=udata["message_rate"]
-        update_graph = threading.Thread(target=graph_update)
+        update_graph = threading.Thread(target=graph_update )
         update_graph.start()
     try:
         return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
