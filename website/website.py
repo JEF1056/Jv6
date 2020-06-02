@@ -121,7 +121,7 @@ def submit():
 @requires_authorization
 def logout():
     discord.revoke()
-    return redirect(url_for(".login"))
+    return redirect(url_for(".root"))
  
 @app.route("/data/")
 @requires_authorization
