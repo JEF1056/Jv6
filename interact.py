@@ -290,9 +290,9 @@ async def on_message(message):
     elif message.content.lower() == prefix+"-p":
         embed=discord.Embed(title="User Profile: "+ str(message.author), url="https://jadeai.ml", color=0x80ff80)
         embed.set_thumbnail(url=message.author.avatar_url)
-        embed.add_field(name="Last seen", value= str(datetime.datetime.fromtimestamp(user_data["timestamp"]).strftime('%X %x %Z')), inline=False)
+        embed.add_field(name="Last seen", value= str(datetime.datetime.fromtimestamp(user_data["timestamp"]).strftime('%X %x')) + time.time().stftrime("%Z"), inline=False)
         embed.add_field(name="Number of Messages", value= str(user_data["message_count"]), inline=False)
-        embed.set_footer(text=str(time.strftime('%X %x %Z')))
+        embed.set_footer(text="Global Total: " + str(udata["message_total"]))
         await message.channel.send(embed=embed, delete_after=150)
         try:
             await message.delete()
