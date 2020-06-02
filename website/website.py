@@ -50,13 +50,13 @@ def callback():
 
 @app.route("/submit/", methods=['POST'])
 @requires_authorization
-async def submit():
+def submit():
     global dbli
     if request.method == 'POST':
         inp = request.json
         print(inp)
         try:
-            user_status= await dbli.get_user_vote(user_id=int(inp["user_id"]))
+            user_status= dbli.get_user_vote(user_id=int(inp["user_id"]))
         except Exception as e:
             print(e)
             user_status=False
@@ -103,7 +103,7 @@ async def submit():
                 else:
                     return {"state":False, "message":""+str(inp["setting"])+" is not a valid setting."}
         else:
-            await return {"state":False, "message":"No Guild Selected!"}
+            return {"state":False, "message":"No Guild Selected!"}
 	
 @app.route("/data/")
 @requires_authorization
