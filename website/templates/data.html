@@ -53,7 +53,7 @@
 									<div class="row">
                                         {% for guild in guilds %}
                                             <div class="col-4 col-6-medium col-12-small">
-                                                <a href="#settings" onclick="setGuild({{guild.id}}n,&quot;{{guild.name}}&quot;,guild_settings,&quot;{{guild.icon_hash}}&quot;); guild_id={{guild.id}}n;" class="image fit"><img id="{{guild.id}}" src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 width=250 alt=""></a>
+                                                <a href="#settings" onclick="setGuild({{guild.id}}n,&quot;{{guild.name}}&quot;,guild_settings,&quot;{{guild.icon_hash}}&quot;); guild_id={{guild.id}}n;" class="image fit"><img id="{{guild.id}}" src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 width=512 alt=""></a>
                                             </div>
                                             <script>
                                                 var image = document.getElementById("{{guild.id}}");
