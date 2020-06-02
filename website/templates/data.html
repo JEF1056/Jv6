@@ -32,7 +32,7 @@
 						<!-- Me -->
 							<article id="home" class="panel intro">
 								<header>
-									<h1>{{name}}</h1>
+									<h1>{{user.name}}</h1>
 									<p>Hewwo, Frien!</p>
 								</header>
 								<a href="#guilds" class="jumplink pic">
@@ -162,7 +162,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12-medium">
-                                                    <input type="button" onclick="send_change({'guild_id':guild_id.toString(), 'setting':document.getElementById('Setting').value, 'value':document.getElementById('Value').value});" value="Commit Settings" />
+                                                    <input type="button" onclick="send_change({'guild_id':guild_id.toString(), 'setting':document.getElementById('Setting').value, 'value':document.getElementById('Value').value, 'user_id':{{user_id}}n.toString()});" value="Commit Settings" />
                                                 </div>
                                                 <div class="col-12-medium">
                                                     <input type="button" onclick="send_change({'guild_id':guild_id.toString(), 'setting':'reset', 'value':document.getElementById('Value').value});" value="Reset" />

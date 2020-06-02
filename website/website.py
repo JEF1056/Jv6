@@ -50,13 +50,13 @@ def callback():
 def submit():
     global dbli
     if request.method == 'POST':
-        try:
-            user_status= dbli.get_user_vote(user_id=message.author.id)
-        except:
-            user_status=False
         inp = request.json
         print(inp)
-        print(type(inp))
+        try:
+            user_status= await dbli.get_user_vote(user_id=int(inp["'user_id"]))
+        except Exception as e:
+            print(e)
+            user_status=False
         server=["model", "model_checkpoint", "device"]
         client_side=["temperature","top_k","top_p"]
         privledged=["no_sample","seed", "auto_seed", "max_history", "max_length"]
@@ -110,6 +110,7 @@ def data():
     guilds=discord.fetch_guilds()
     guilds_data=[]
     guild_settings={}
+    
     for guild in guilds:
         if str(guild.id)+".p" in os.listdir("../hist"):
             guilds_data.append(guild)
@@ -117,7 +118,7 @@ def data():
             guild_settings[int(guild.id)]["settings"]=vars(guild_settings[int(guild.id)]["settings"])
     guild_settings=json.dumps(guild_settings)
     
-    return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", name=user.name, guilds=guilds_data, guild_settings=guild_settings)
+    return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", user=user, guilds=guilds_data, guild_settings=guild_settings)
 
 if __name__ == "__main__":
   #app.run(ssl_context='adhoc')

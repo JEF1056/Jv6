@@ -242,11 +242,17 @@ async def on_ready():
 
 prefix=config["prefix"]
 current_version=1
-global t1, settings, history,user_version
+global t1, settings, history,user_version, current_local_total
+try:
+    udata=pickle.load(open("hist/user/users.p", "rb"))
+    current_local_total=udata["message_rate"][len(udata["message_rate"]-1)]
+except:
+    pickle.dump({"message_total":0,"message_rate":[{"timestamp":round(time.time()), "message_count":0}],"users":{}}, open("hist/user/users.p", "wb"))
+    current_local_total={"timestamp":round(time.time()), "message_count":0}
 
 @client.event
 async def on_message(message):
-    global personality, tokenizer, model, client, t1, settings, history,user_version
+    global personality, tokenizer, model, client, t1, settings, history,user_version, current_local_total
     if message.content.lower().startswith(prefix):
         history=[]
         settings=args1
@@ -255,6 +261,11 @@ async def on_message(message):
             user_status=await dbli.get_user_vote(user_id=message.author.id)
         except:
             user_status=False
+        udata=pickle.load(open("hist/user/users.p", "rb"))
+        try:
+            user_data=udata["users"][message.author.id]
+        except:
+            user_data={"timestamp": time.time()-30, "message_count":0}
         try:
             for key, value in pickle.load(open("hist/"+str(message.guild.id)+".p", "rb")).items():
                 globals()[str(key)]=value
@@ -425,7 +436,7 @@ async def on_message(message):
             ratelimit=2
         else:
             ratelimit=8
-        if round(time.time())-t1 > ratelimit:
+        if round(time.time())-user_data["timestamp"] > ratelimit:
             await message.channel.trigger_typing()
             raw_text = message.content[len(prefix):][:100].lower().strip()
             raw_text = re.sub(r"([?.!,])", r" \1 ", raw_text)
@@ -442,6 +453,14 @@ async def on_message(message):
                 if avg_similarity(settings.max_history,get_history(message).replace("> ","").split("\n")) >= 0.35 and settings.auto_seed == True:
                     settings.seed=random.randint(0,9999999999)
             pickle.dump({"t1":round(time.time()),"settings":settings,"history":history,"user_version":current_version}, open("hist/"+str(message.guild.id)+".p", "wb"))
+            user_data["message_count"]+=1
+            user_data["timestamp"]=round(time.time())
+            udata["users"][message.author.id]=user_data
+            current_local_total["message_count"]+=1
+            if round(time.time())-current_local_total["timestamp"] > 1800:
+                print("updating the statistics")
+                udata["message_rate"].append({"timestamp":round(time.time()), "message_count":current_local_total["message_count"]})
+            pickle.dump({"message_total":udata["message_total"]+1,"message_rate":udata["message_rate"],"users":udata["users"]}, open("hist/user/users.p", "wb"))
             out_text = tokenizer.decode(out_ids, skip_special_tokens=True)
             await message.channel.send(out_text)
             try:
