@@ -128,13 +128,11 @@ def data():
             guild_settings[int(guild.id)]["settings"]=vars(guild_settings[int(guild.id)]["settings"])
     guild_settings=json.dumps(guild_settings)
     udata=pickle.load(open("../hist/user/users.p", "rb"))
-    if udata["message_rate"] != cached_history or "temporal.html" not in os.listdir("static/data/assets/html/"):
-        cached_history=udata["message_rate"]
-        x=[]
-        y=[]
-        for cache_data in cached_history:
-            x.append(cache_data)
-            y.append(cached_history[cache_data])
+    cached_history=udata["message_rate"]
+    x,y=[],[]
+    for cache_data in cached_history:
+        x.append(cache_data)
+        y.append(cached_history[cache_data])
     try:
         return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", graph_x=x, graph_y=y, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
     except:
