@@ -196,7 +196,6 @@
                                     <h2>Info</h2>
                                 </header>
                                 <div id="messagesperday">
-                                    <p>Total Messages Recorded: {{totalmessages}}</p>
                                     <canvas id="messagescanvas" style="display: block; width: 832px; height: 416px;" width="832" height="416" class="chartjs-render-monitor"></canvas>
                                 </div>
                                 <script>
@@ -213,7 +212,7 @@
                                         options: {
                                             title: {
                                             display: true,
-                                            text: 'Messages per Day'
+                                            text: 'Total Messages Recorded: {{totalmessages}}'
                                             }
                                         }
                                     });
