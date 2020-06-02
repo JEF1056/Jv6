@@ -303,7 +303,7 @@ async def on_message(message):
             embed.set_footer(text="Thanks for supporting Jade!")
         else:
             embed.set_footer(text="You have yet to vote for Jade!")
-        embed.set_author(name=str(message.author),icon_url=message.author.avatar_url)
+        embed.set_author(name=str(message.author), icon_url=message.author.avatar_url)
         await message.channel.send(embed=embed, delete_after=100)
         try:
             await message.delete()
