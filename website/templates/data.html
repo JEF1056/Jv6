@@ -195,8 +195,20 @@
                                     <h2>Info</h2>
                                 </header>
                                 <div id="graph">
-                                    <input type="button" onclick="document.getElementById('graph').innerHTML='<p>Loading ...</p>'; $('#graph').load('/static/data/assets/html/temporal.html');" value="View Message Statistics" />
+                                    <canvas id="canvas" style="display: block; width: 832px; height: 416px;" width="832" height="416" class="chartjs-render-monitor"></canvas>
                                 </div>
+                                <script>
+                                    new Chart(document.getElementById('canvas')) {
+                                        type: 'line',
+                                        data: {
+                                            labels: {{graph_x}}
+                                            datasets: [{ 
+                                                data: {{graph_y}},
+                                                borderColor: "#a5bba7",
+                                                fill: false
+                                            }
+                                    }
+                                </script>
 							</article>
 					</div>
 
@@ -214,7 +226,6 @@
 			<script src="/static/data/assets/js/breakpoints.min.js"></script>
 			<script src="/static/data/assets/js/util.js"></script>
             <script src="/static/data/assets/js/main.js"></script>
-
 
 	</body>
 </html>

@@ -6,7 +6,6 @@ import pickle, random
 import os
 import plotly.express as px
 import datetime
-import threading
 
 app = Flask(__name__)
 
@@ -29,17 +28,6 @@ def str2bool(v):
         return False
     else:
         raise TypeError('Boolean value expected.')
-    
-def graph_update():
-    x=[]
-    y=[]
-    for cache_data in cached_history:
-        x.append(datetime.datetime.fromtimestamp(cache_data["timestamp"]))
-        y.append(cache_data["message_count"])
-    fig = px.line(x=x, y=y)
-    fig.update_xaxes(rangeslider_visible=True)
-    fig.update_layout(xaxis_title="Time", yaxis_title="# of Messages")
-    fig.write_html("static/data/assets/html/temporal.html", full_html=False)
 
 app.config["DISCORD_CLIENT_ID"] = config["DISCORD_CLIENT_ID"]  # Discord client ID.
 app.config["DISCORD_CLIENT_SECRET"] = config["DISCORD_CLIENT_SECRET"]  # Discord client secret.
@@ -142,12 +130,15 @@ def data():
     udata=pickle.load(open("../hist/user/users.p", "rb"))
     if udata["message_rate"] != cached_history or "temporal.html" not in os.listdir("static/data/assets/html/"):
         cached_history=udata["message_rate"]
-        update_graph = threading.Thread(target=graph_update )
-        update_graph.start()
+        x=[]
+        y=[]
+        for cache_data in cached_history:
+            x.append(cache_data)
+            y.append(cached_history[cache_data])
     try:
-        return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
+        return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", graph_x=x, graph_y=y, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
     except:
-        return render_template("data.html", avatar_url="/static/data/images/fallbackpfp.png", user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
+        return render_template("data.html", avatar_url="/static/data/images/fallbackpfp.png", graph_x=x, graph_y=y, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
         
 if __name__ == "__main__":
   #app.run(ssl_context='adhoc')
