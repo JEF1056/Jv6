@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <link rel="icon" href="/static/icon.ico">
 <script src="/static/data/assets/js/get_vars.js"></script>
+<script src="/static/data/assets/js/jquery.min.js"></script>
 <script>
     includeHTML();
     var guild_settings=JSON.parse('{{guild_settings}}'.replace(/&#34;/gi,'"'));
@@ -194,7 +195,11 @@
 								<header>
                                     <h2>Info</h2>
                                 </header>
-                                <div w3-include-html="/static/data/assets/html/temporal.html"></div>
+                                <script> 
+                                    $(function(){
+                                      $("#includedContent").load("/static/data/assets/html/temporal.html"); 
+                                    }); 
+                                </script>
 							</article>
 					</div>
 
@@ -207,7 +212,6 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="/static/data/assets/js/jquery.min.js"></script>
 			<script src="/static/data/assets/js/browser.min.js"></script>
 			<script src="/static/data/assets/js/breakpoints.min.js"></script>
 			<script src="/static/data/assets/js/util.js"></script>
