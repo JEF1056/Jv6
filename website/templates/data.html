@@ -199,7 +199,7 @@
                                     <canvas id="canvas" style="display: block; width: 832px; height: 416px;" width="832" height="416" class="chartjs-render-monitor"></canvas>
                                 </div>
                                 <script>
-                                    new Chart(document.getElementById('canvas')), {
+                                    new Chart(document.getElementById('canvas'), {
                                         type: 'line',
                                         data: {
                                             labels: {{graph_x|safe}},
@@ -208,7 +208,7 @@
                                                 borderColor: "#a5bba7",
                                                 fill: false
                                             }]
-                                        }}
+                                        }});
                                 </script>
 							</article>
 					</div>
