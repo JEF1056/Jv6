@@ -163,9 +163,9 @@ parser.add_argument("--model", type=str, default="openai-gpt", help="Model type 
 parser.add_argument("--model_checkpoint", type=str, default="run0", help="Path, url or short name of the model")
 parser.add_argument("--device", type=str, default="cuda" if torch.cuda.is_available() else "cpu", help="Device (cuda or cpu)")
 
-parser.add_argument("--temperature", type=int, default=0.9, help="Sampling softmax temperature")
+parser.add_argument("--temperature", type=int, default=0.7, help="Sampling softmax temperature")
 parser.add_argument("--top_k", type=int, default=40, help="Filter top-k tokens before sampling (<=0: no filtering)")
-parser.add_argument("--top_p", type=float, default=0.95, help="Nucleus filtering (top-p) before sampling (<=0.0: no filtering)")
+parser.add_argument("--top_p", type=float, default=0.75, help="Nucleus filtering (top-p) before sampling (<=0.0: no filtering)")
 
 parser.add_argument("--seed", type=int, default=random.randint(0,9999999999), help="Seed")
 parser.add_argument("--auto-seed", type=str2bool, default=True, help="auto-seeding")
