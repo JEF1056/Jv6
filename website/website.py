@@ -56,7 +56,7 @@ def submit():
         inp = request.json
         print(inp)
         try:
-            user_status= dbli.get_user_vote(user_id=int(inp["'user_id"]))
+            user_status= dbli.get_user_vote(user_id=int(inp["user_id"]))
         except Exception as e:
             print(e)
             user_status=False
