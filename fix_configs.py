@@ -2,6 +2,7 @@ import os, pickle, time
 for path in os.listdir("hist"):
     try:
         t1, settings, history, user_version = pickle.load(open(os.path.join("hist",path),"rb"))
+        print(settings)
         settings.top_p=0.75
         settings.temperature=0.7
         settings.model="gpt2"
