@@ -131,7 +131,8 @@ def data():
             y.append(cache_data["message_count"])
         fig = px.line(x=x, y=y)
         fig.update_xaxes(rangeslider_visible=True)
-        fig.write_html("static/data/assets/html/temporal.html")
+        fig.update_layout(xaxis_title="Time", yaxis_title="# of Messages")
+        fig.write_html("static/data/assets/html/temporal.html", full_html=False, include_plotlyjs=False)
     try:
         return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
     except:
