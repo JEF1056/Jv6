@@ -4,6 +4,8 @@ from waitress import serve
 import json, dbl, discord
 import pickle, random
 import os
+import plotly.graph_objects as go
+import datetime
 
 app = Flask(__name__)
 
@@ -15,6 +17,7 @@ app.secret_key = config["secret_key"]
 global dbli
 client = discord.Client()
 dbli=dbl.DBLClient(client, config_0["dbltoken"])
+cached_history=pickle.load(open("hist/user/users.p", "rb"))["message_rate"]
 
 def str2bool(v):
     if isinstance(v, bool):
@@ -117,6 +120,17 @@ def data():
             guild_settings[int(guild.id)]=(pickle.load(open("../hist/"+str(guild.id)+".p", "rb")))
             guild_settings[int(guild.id)]["settings"]=vars(guild_settings[int(guild.id)]["settings"])
     guild_settings=json.dumps(guild_settings)
+    udata=pickle.load(open("hist/user/users.p", "rb"))
+    if udata["message_rate"] != cached_history:
+        cached_history=udata["message_rate"]
+        x=[]
+        y=[]
+        for cache_data in cached_history:
+            x.append(datetime.datetime.fromtimestamp(cache_data["timestamp"]))
+            y.append(cache_data["message_count"])
+        fig = px.line(x=x, y=y)
+        fig.update_xaxes(rangeslider_visible=True)
+        fig.write_html("website/static/data/assets/html/temporal.html")
     try:
         return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
     except:

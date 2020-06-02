@@ -463,7 +463,7 @@ async def on_message(message):
             user_data["timestamp"]=round(time.time())
             udata["users"][message.author.id]=user_data
             current_local_total["message_count"]+=1
-            if round(time.time())-current_local_total["timestamp"] > 1800:
+            if round(time.time())-current_local_total["timestamp"] > 7200:
                 print("updating the statistics")
                 udata["message_rate"].append({"timestamp":round(time.time()), "message_count":current_local_total["message_count"]})
                 current_local_total={"timestamp":round(time.time()), "message_count":0}
