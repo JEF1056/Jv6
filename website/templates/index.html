@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <link rel="icon" href="/static/icon.ico">
+<script src="/static/home/assets/js/jquery.cookie.js"></script>
 <html>
 	<head>
 		<title>JadeAI : Home</title>
@@ -59,7 +60,7 @@
 						-->
 						<footer>
 							<ul class="actions special">
-								<li><a href="login" class="button">Login With Discord</a></li>
+								<li><a href="login" onclick='for (var it in $.cookie()) $.removeCookie(it);' class="button">Login With Discord</a></li>
 							</ul>
 						</footer>
 					</section>
