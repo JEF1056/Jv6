@@ -20,9 +20,9 @@ for path in os.listdir("hist"):
         new_data={}
         for message in message_rate:
             try:
-                new_data[str(datetime.datetime.fromtimestamp(round(message["timestamp"])))]+=message["message_count"]
+                new_data[message.split(" ")[0]]+=message["message_count"]
             except:
-                new_data[str(datetime.datetime.fromtimestamp(round(message["timestamp"])))]=message["message_count"]
+                new_data[message.split(" ")[0]]=message["message_count"]
         print({"message_total":message_total,"message_rate":new_data,"users":users})
         pickle.dump({"message_total":message_total,"message_rate":new_data,"users":users}, open("hist/user/users.p", "wb"))
         print(os.path.join("hist",path))
