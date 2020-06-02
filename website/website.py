@@ -50,7 +50,7 @@ def callback():
 
 @app.route("/submit/", methods=['POST'])
 @requires_authorization
-def submit():
+async def submit():
     global dbli
     if request.method == 'POST':
         inp = request.json
