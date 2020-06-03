@@ -129,16 +129,19 @@ def data():
     guild_settings=json.dumps(guild_settings)
     udata=pickle.load(open("../hist/user/users.p", "rb"))
     cached_history=udata["message_rate"]
-    x,y=[],[]
+    cached_total=udata["message_total"]
+    x,y,z=[],[],[]
     for cache_data in cached_history:
         x.append(cache_data)
         y.append(cached_history[cache_data])
+    for cache_data in cached_total:
+        z.append(cache_data[cache_data])
     try:
         return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", totalmessages=udata["message_total"][str(datetime.date.today())],
-                               graph_x=x, graph_y=y, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
+                               graph_x=x, graph_y=y, graph_z=z, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
     except:
         return render_template("data.html", avatar_url="/static/data/images/fallbackpfp.png", totalmessages=udata["message_total"][str(datetime.date.today())],
-                                graph_x=x, graph_y=y, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
+                                graph_x=x, graph_y=y, graph_z=z, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
         
 if __name__ == "__main__":
   #app.run(ssl_context='adhoc')
