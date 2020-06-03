@@ -233,6 +233,18 @@ async def update_guilds():
     requests.post("https://discord.bots.gg/api/v1/bots/410253782828449802/stats", data = 'Authorization: '+config["dbots.gg"]+'\nContent-Type: application/json\n{"guildCount": '+str(len(client.guilds))+'}')
 
 @client.event
+async def on_guild_remove():
+    os.remove("hist/"+str(guild.id)+".p")
+    try:
+        webhook = DiscordWebhook(url=config["logchannel"], avatar_url=str(guild.icon_url), username=str(guild.name))
+        embed = DiscordEmbed(title="Left guild", description=str(guild.id), color=0x80ff80)
+        embed.set_footer(text=str(time.strftime('%X %x %Z')))
+        webhook.add_embed(embed)
+        webhook.execute()
+    except:
+        pass
+
+@client.event
 async def on_ready():
     global personality, tokenizer, model, dbli
     print('Logged in as '+client.user.name+' (ID:'+str(client.user.id)+') | Connected to '+str(len(client.guilds))+' servers | Connected to '+ str(len(set(client.get_all_members()))) +' users')
