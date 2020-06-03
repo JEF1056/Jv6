@@ -134,8 +134,7 @@ def data():
     for cache_data in cached_history:
         x.append(cache_data)
         y.append(cached_history[cache_data])
-    for cache_data in cached_total:
-        z.append(cache_data[cache_data])
+        z.append(cached_total[cache_data])
     try:
         return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", totalmessages=udata["message_total"][str(datetime.date.today())],
                                graph_x=x, graph_y=y, graph_z=z, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
