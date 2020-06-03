@@ -465,10 +465,10 @@ async def on_message(message):
                 udata["users"][message.author.id]=user_data
                 new_data=udata["message_rate"]
                 new_total=udata["message_total"]
-                if new_data[str(date.today())] == None:
-                    new_data[str(date.today())]=1
-                else:    
+                try:
                     new_data[str(date.today())]=udata["message_rate"][str(date.today())]+1
+                except:    
+                    new_data[str(date.today())]=1
                 new_total=udata["message_total"]
                 new_total[str(date.today())]=udata["message_total"][str(date.today())]+1
                 pickle.dump({"message_total":new_total,"message_rate":new_data,"users":udata["users"]}, open("hist/user/users.p", "wb"))
