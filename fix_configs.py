@@ -17,8 +17,8 @@ for path in os.listdir("hist"):
 try:
     data = pickle.load(open("hist/user/users.p", "rb"))
     message_total, message_rate, users = data["message_total"],data["message_rate"], data["users"]
-    new_data={'2020-06-02': 683}
-    new_total={'2020-06-02': 683}
+    new_data={'2020-06-02': 683, '2020-06-03': 6}
+    new_total={'2020-06-02': 683, '2020-06-03': 689}
     print({"message_total":new_total,"message_rate":new_data,"users":users})
     pickle.dump({"message_total":new_total,"message_rate":new_data,"users":users}, open("hist/user/users.p", "wb"))
     print(os.path.join("hist",path))
