@@ -195,32 +195,25 @@
 								<header>
                                     <h2>Info</h2>
                                 </header>
-                                <div id="messagesperday">
+                                <div id="messagestotal">
                                     <canvas id="messagescanvas" style="display: block; width: 832px; height: 416px;" width="832" height="416" class="chartjs-render-monitor"></canvas>
+                                </div>
+                                <div id="messagesperday">
+                                    <canvas id="messagescanvasday" style="display: block; width: 832px; height: 416px;" width="832" height="416" class="chartjs-render-monitor"></canvas>
                                 </div>
                                 <script>
                                     new Chart(document.getElementById('messagescanvas'), {
                                         type: 'line',
                                         data: {
-                                            labels: {{graph_x|safe}},
-                                            datasets: [{
-                                                data: {{graph_y}},
-                                                label: "Number of Messages",
-                                                borderColor: "#a5bba7",
-                                                fill: false
-                                            }, {
-                                                data: {{graph_z}},
-                                                label: "Total Messages",
-                                                borderColor: "#709180",
-                                                fill: false
-                                            }]}, 
-                                        options: {
-                                            title: {
-                                            display: true,
-                                            text: 'Total Messages Recorded: {{totalmessages}}'
-                                            }
-                                        }
-                                    });
+                                            labels: {{graph_x|safe}},datasets: [{data: {{graph_y}},label: "Number of Messages",borderColor: "#a5bba7",fill: false}]}, 
+                                            options: {title: {display: true,text: 'Messages today: {{todaymessages}}'}
+                                    }});
+                                    new Chart(document.getElementById('messagescanvasday'), {
+                                        type: 'line',
+                                        data: {
+                                            labels: {{graph_x|safe}},datasets: [{data: {{graph_z}},label: "Total Messages",borderColor: "#a5bba7",fill: false}]}, 
+                                            options: {title: {display: true,text: 'Total Messages Recorded: {{totalmessages}}'}
+                                    }});
                                 </script>
 							</article>
 					</div>
