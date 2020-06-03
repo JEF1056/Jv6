@@ -35,7 +35,13 @@
 							<article id="home" class="panel intro">
 								<header>
 									<h1>{{user.name}}</h1>
-									<p>Hewwo, Frien!</p>
+                                    <p id="user_info">
+                                        Last Seen: Never<br>
+                                        Number of Messages: None
+                                    </p>
+                                    <script>
+                                        document.getElementById("user_info").innerHTML="Last Seen: "+get_date({{u_profile['timestamp']}});+"<br>Number of Messages: {{u_profile['message_count']";
+                                    </script>
 								</header>
 								<a href="#guilds" class="jumplink pic">
 									<span class="arrow icon solid fa-chevron-right"><span>Configure Your Settings</span></span>
