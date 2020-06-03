@@ -18,7 +18,7 @@ try:
     data = pickle.load(open("hist/user/users.p", "rb"))
     message_total, message_rate, users = data["message_total"],data["message_rate"], data["users"]
     new_data={'2020-06-02': message_total}
-    new_total={str(datetime.date.today()), message_total}
+    new_total={str(datetime.date.today()): message_total}
     print({"message_total":new_total,"message_rate":new_data,"users":users})
     pickle.dump({"message_total":new_total,"message_rate":new_data,"users":users}, open("hist/user/users.p", "wb"))
     print(os.path.join("hist",path))
