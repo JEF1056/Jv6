@@ -263,10 +263,10 @@ except:
 
 @client.event
 async def on_message(message):
-    if message.guild==None:
+    if message.guild==None and message.author.bot == False:
         embed=discord.Embed(title="DM integration", url="https://www.notion.so/jadeai/1c0f1d42eb6345b58013a1be35e47793?v=d45f7f3d26e140c995f8a9021564bb99", description="Dms are not supported yet! when they are, they will require a upvote on top.gg and a confimed server referral to a server with 10+ non-bot members", color=0x80ff80)
         await message.channel.send(embed=embed)
-    else:
+    elif message.author.bot == False:
         global personality, tokenizer, model, client, t1, settings, history,user_version
         if message.content.lower().startswith(prefix):
             history=[]
