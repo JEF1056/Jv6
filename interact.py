@@ -467,10 +467,10 @@ async def on_message(message):
                 new_total=udata["message_total"]
                 try:
                     new_data[str(date.today())]=udata["message_rate"][str(date.today())]+1
+                    new_total[str(date.today())]=udata["message_total"][str(date.today())]+1
                 except:    
                     new_data[str(date.today())]=1
-                new_total=udata["message_total"]
-                new_total[str(date.today())]=udata["message_total"][str(date.today())]+1
+                    new_total[str(date.today())]=1
                 pickle.dump({"message_total":new_total,"message_rate":new_data,"users":udata["users"]}, open("hist/user/users.p", "wb"))
                 out_text = tokenizer.decode(out_ids, skip_special_tokens=True)
                 await message.channel.send(out_text)
