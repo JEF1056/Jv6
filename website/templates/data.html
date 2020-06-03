@@ -40,7 +40,8 @@
                                         Number of Messages: None
                                     </p>
                                     <script>
-                                        document.getElementById("user_info").innerHTML="Last Seen: "+get_date({{u_profile['timestamp']}});+"<br>Number of Messages: {{u_profile['message_count']";
+                                        var time_u={{u_profile}}
+                                        document.getElementById("user_info").innerHTML="Last Seen: "+get_date(time_u["timestamp"]);+"<br>Number of Messages: "+time_u["message_count"];
                                     </script>
 								</header>
 								<a href="#guilds" class="jumplink pic">
