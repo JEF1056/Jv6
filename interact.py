@@ -247,7 +247,7 @@ global t1, settings, history,user_version
 try:
     udata=pickle.load(open("hist/user/users.p", "rb"))
 except:
-    pickle.dump({"message_total":0,"message_rate":{},"users":{}}, open("hist/user/users.p", "wb"))
+    pickle.dump({"message_total":{},"message_rate":{},"users":{}}, open("hist/user/users.p", "wb"))
 
 @client.event
 async def on_message(message):
@@ -293,7 +293,7 @@ async def on_message(message):
             embed.set_thumbnail(url=message.author.avatar_url)
             embed.add_field(name="Last seen", value= str(datetime.datetime.fromtimestamp(user_data["timestamp"]).strftime('%X %x')) + time.strftime(" %Z"), inline=False)
             embed.add_field(name="Number of Messages", value= str(user_data["message_count"]), inline=False)
-            embed.set_footer(text="Global Total: " + str(udata["message_total"]))
+            embed.set_footer(text="Global Total: " + str(udata["message_total"][str(date.today())]))
             await message.channel.send(embed=embed, delete_after=150)
             try:
                 await message.delete()
@@ -464,8 +464,14 @@ async def on_message(message):
                 user_data["timestamp"]=round(time.time())
                 udata["users"][message.author.id]=user_data
                 new_data=udata["message_rate"]
-                new_data[str(date.today())]=udata["message_rate"][str(date.today())]+1
-                pickle.dump({"message_total":udata["message_total"]+1,"message_rate":new_data,"users":udata["users"]}, open("hist/user/users.p", "wb"))
+                new_total=udata["message_total"]
+                if new_data[str(date.today())] == None:
+                    new_data[str(date.today())]=1
+                else:    
+                    new_data[str(date.today())]=udata["message_rate"][str(date.today())]+1
+                new_total=udata["message_total"]
+                new_total[str(date.today())]=udata["message_total"][str(date.today())]+1
+                pickle.dump({"message_total":new_total,"message_rate":new_data,"users":udata["users"]}, open("hist/user/users.p", "wb"))
                 out_text = tokenizer.decode(out_ids, skip_special_tokens=True)
                 await message.channel.send(out_text)
                 try:
