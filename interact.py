@@ -245,7 +245,7 @@ async def on_guild_remove():
         pass
 
 @client.event
-async def on_ready():
+async def on_ready(guild):
     global personality, tokenizer, model, dbli
     print('Logged in as '+client.user.name+' (ID:'+str(client.user.id)+') | Connected to '+str(len(client.guilds))+' servers | Connected to '+ str(len(set(client.get_all_members()))) +' users')
     print('--------')
