@@ -234,7 +234,6 @@ async def update_guilds():
 
 @client.event
 async def on_guild_join(guild):
-    os.remove("hist/"+str(guild.id)+".p")
     try:
         webhook = DiscordWebhook(url=config["logchannel"], avatar_url=str(guild.icon_url), username=str(guild.name))
         embed = DiscordEmbed(title="Joined guild", description=str(guild.id), color=0xaaff88)
@@ -247,7 +246,10 @@ async def on_guild_join(guild):
 
 @client.event
 async def on_guild_remove(guild):
-    os.remove("hist/"+str(guild.id)+".p")
+    try:
+        os.remove("hist/"+str(guild.id)+".p")
+    except:
+        pass
     try:
         webhook = DiscordWebhook(url=config["logchannel"], avatar_url=str(guild.icon_url), username=str(guild.name))
         embed = DiscordEmbed(title="Left guild", description=str(guild.id), color=0xff9988)
