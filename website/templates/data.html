@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <link rel="icon" href="/static/icon.ico">
 <script src="/static/data/assets/js/get_vars.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <script>
     var guild_settings=JSON.parse('{{guild_settings}}'.replace(/&#34;/gi,'"'));
     var guild_id=0n
@@ -20,10 +21,11 @@
 
 				<!-- Nav -->
 					<nav id="nav">
-						<a href="#" class="icon solid fa-portrait"><span>{{name}}</span></a>
+						<a href="#" class="icon solid fa-portrait"><span>{{user.name}}</span></a>
 						<a href="#guilds" class="icon solid fa-server"><span>Guilds</span></a>
                         <a href="#settings" class="icon solid fa-sliders-h"><span>Settings</span></a>
                         <a href="#info" class="icon solid fa-info"><span>Info</span></a>
+                        <a href="https://jadeai.ml/logout" class="icon solid fa-sign-out-alt"><span>Logout</span></a>
 					</nav>
 
 				<!-- Main -->
@@ -32,8 +34,15 @@
 						<!-- Me -->
 							<article id="home" class="panel intro">
 								<header>
-									<h1>{{name}}</h1>
-									<p>Hewwo, Frien!</p>
+									<h1>{{user.name}}</h1>
+                                    <p id="user_info">
+                                        Last Seen: Never<br>
+                                        Number of Messages: None
+                                    </p>
+                                    <script>
+                                        var time_u={{u_profile|safe}}
+                                        document.getElementById("user_info").innerHTML="Last Seen: "+get_date(time_u["timestamp"])+"<br>Number of Messages: "+time_u["message_count"];
+                                    </script>
 								</header>
 								<a href="#guilds" class="jumplink pic">
 									<span class="arrow icon solid fa-chevron-right"><span>Configure Your Settings</span></span>
@@ -46,15 +55,27 @@
 								<header>
 									<h2>Guilds</h2>
 								</header>
-								<p>
-									Click any of the icons below to change Jade's settings in that server!
-								</p>
+								<p id="guild_desc_msg"></p>
 								<section>
 									<div class="row">
+                                        <script>
+                                            if ({{num_guilds}} > 0) {
+                                                document.getElementById("guild_desc_msg").innerHTML = "Click any of the icons below to change Jade's settings in that server!";
+                                            } else {
+                                                document.getElementById("guild_desc_msg").innerHTML = "You aren't in any servers with Jade! <s>Why... are you even here?</s> <a href=https://discord.com/api/oauth2/authorize?client_id=410253782828449802&permissions=3088&redirect_uri=https%3A%2F%2Fjadeai.ml%2Fauth&scope=bot>Invite Jade</a><br>Note: you will need to run a <code>JD [message]</code> before the guild will appear here.";
+                                            }
+                                        </script>
                                         {% for guild in guilds %}
                                             <div class="col-4 col-6-medium col-12-small">
-                                                <a href="#settings" onclick="setGuild({{guild.id}}n,&quot;{{guild.name}}&quot;,guild_settings,&quot;{{guild.icon_hash}}&quot;); guild_id={{guild.id}}n;" class="image fit"><img src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 alt=""></a>
+                                                <a href="#settings" onclick="setGuild({{guild.id}}n,&quot;{{guild.name}}&quot;,guild_settings,&quot;{{guild.icon_hash}}&quot;); guild_id={{guild.id}}n;" class="image fit"><img id="{{guild.id}}" src=https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon_hash}}.png?size=512 width=512 alt=""></a>
                                             </div>
+                                            <script>
+                                                var image = document.getElementById("{{guild.id}}");
+                                                image.onerror = function () {
+                                                console.log('error loading ' + this.src);
+                                                this.src = '/static/data/images/fallbackpfp.png';
+                                                };
+                                            </script>
                                         {% endfor %}
 									</div>
 								</section>
@@ -94,7 +115,7 @@
                                                 <td>temperature</td>
                                                 <td id="temperature">NaN</td>
                                                 <td>1</td>
-                                                <td>0.9</td>
+                                                <td>0.85</td>
                                             </tr>
                                             <tr>
                                                 <td>top_k</td>
@@ -106,7 +127,7 @@
                                                 <td>top_p</td>
                                                 <td id="top_p">NaN</td>
                                                 <td>1</td>
-                                                <td>0.95</td>
+                                                <td>0.9</td>
                                             </tr>
                                             <tr>
                                                 <td>seed</td>
@@ -162,10 +183,10 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12-medium">
-                                                    <input type="button" onclick="send_change({'guild_id':guild_id.toString(), 'setting':document.getElementById('Setting').value, 'value':document.getElementById('Value').value});" value="Commit Settings" />
+                                                    <input type="button" onclick="send_change({'guild_id':guild_id.toString(), 'setting':document.getElementById('Setting').value, 'value':document.getElementById('Value').value, 'user_id':{{user.id}}n.toString()});" value="Commit Settings" />
                                                 </div>
                                                 <div class="col-12-medium">
-                                                    <input type="button" onclick="send_change({'guild_id':guild_id.toString(), 'setting':document.getElementById('Setting').value, 'value':document.getElementById('Value').value});" value="Reset" />
+                                                    <input type="button" onclick="send_change({'guild_id':guild_id.toString(), 'setting':'reset', 'value':document.getElementById('Value').value});" value="Reset" />
                                                 </div>
                                                 <div class="col-12-medium">
                                                     <p id="message" class="message_none"></p>
@@ -180,10 +201,27 @@
                             <article id="info" class="panel">
 								<header>
                                     <h2>Info</h2>
-								</header>
-								<form action="#" method="post">
-									
-								</form>
+                                </header>
+                                <div id="messagestotal">
+                                    <canvas id="messagescanvas" style="display: block; width: 832px; height: 416px;" width="832" height="416" class="chartjs-render-monitor"></canvas>
+                                </div>
+                                <div id="messagesperday">
+                                    <canvas id="messagescanvasday" style="display: block; width: 832px; height: 416px;" width="832" height="416" class="chartjs-render-monitor"></canvas>
+                                </div>
+                                <script>
+                                    new Chart(document.getElementById('messagescanvas'), {
+                                        type: 'line',
+                                        data: {
+                                            labels: {{graph_x|safe}},datasets: [{data: {{graph_y}},label: "Number of Messages",borderColor: "#a5bba7",fill: false}]}, 
+                                            options: {title: {display: true,text: 'Messages today: {{todaymessages}}'}
+                                    }});
+                                    new Chart(document.getElementById('messagescanvasday'), {
+                                        type: 'line',
+                                        data: {
+                                            labels: {{graph_x|safe}},datasets: [{data: {{graph_z}},label: "Total Messages",borderColor: "#a5bba7",fill: false}]}, 
+                                            options: {title: {display: true,text: 'Total Messages Recorded: {{totalmessages}}'}
+                                    }});
+                                </script>
 							</article>
 					</div>
 
@@ -195,8 +233,8 @@
 					</div>
 			</div>
 
-		<!-- Scripts -->
-			<script src="/static/data/assets/js/jquery.min.js"></script>
+        <!-- Scripts -->
+            <script src="/static/data/assets/js/jquery.min.js"></script>
 			<script src="/static/data/assets/js/browser.min.js"></script>
 			<script src="/static/data/assets/js/breakpoints.min.js"></script>
 			<script src="/static/data/assets/js/util.js"></script>

@@ -36,6 +36,30 @@ footer, header, hgroup, menu, nav, section {
     width: 50%;
 }
 
+::-webkit-scrollbar {
+    width: 6px !important;
+    visibility:hidden;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+}
+
+body:hover::-webkit-scrollbar-thumb {
+    background: #e6ebe6;
+}
+body.scrolling::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:horizontal:hover, 
+::-webkit-scrollbar-thumb:vertical:hover {
+    background: #e6ebe6;
+    visibility:visible;
+}
+::-webkit-scrollbar-thumb:horizontal:active,
+::-webkit-scrollbar-thumb:vertical:active {   
+    background: #e6ebe6;
+    visibility:visible;
+}
+
 p.message_red {
     border-style: none none none solid;
     border-color: #ff9988;
@@ -47,6 +71,7 @@ p.message_red {
 p.message_green {
     border-style: none none none solid;
     border-color: #aaff88;
+    border-width: 6px;
     background-color: #eaffe8;
     padding: 0.7em 1.5em 0.7em 1.5em;
 }

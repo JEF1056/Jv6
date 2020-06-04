@@ -3,5 +3,13 @@
     "dbltoken": "wew-dbl-api-key",
     "logchannel": "a-cool-discord-webhook-link",
     "botsondiscord": "bots-on-discord-api-key",
-    "dbots.gg": "dbots-.-org-api-key"
+    "dbots.gg": "dbots-.-org-api-key",
+    "website": {
+        "secret_key":"[anything random]",
+        "DISCORD_CLIENT_ID": 123456789098765432,
+        "DISCORD_CLIENT_SECRET": "your-bot-secret",
+        "DISCORD_REDIRECT_URI":"redirect-url",
+        "host":"computer-local-ip",
+        "port":80
+        }
 }

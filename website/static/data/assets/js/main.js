@@ -209,3 +209,11 @@
 		}
 
 })(jQuery);
+
+$(window).scroll(function() {
+    $('body').addClass('scrolling');
+    clearTimeout($.data(this, 'scrollTimer'));
+    $.data(this, 'scrollTimer', setTimeout(function() {
+        $('body').removeClass('scrolling');
+    }, 250));
+});
