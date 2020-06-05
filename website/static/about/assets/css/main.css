@@ -33,13 +33,6 @@ body {
 	line-height: 1;
 }
 
-html {
-    -moz-transition: font-size 0.2s ease;
-    -webkit-transition: font-size 0.2s ease;
-    -ms-transition: font-size 0.2s ease;
-    transition: font-size 0.2s ease;
-}
-
 ::-webkit-scrollbar {
     width: 6px !important;
     visibility:hidden;
@@ -200,10 +193,10 @@ input, select, textarea {
 		}
 
 	a {
-		-moz-transition: color 0.2s ease, border-bottom 0.2s ease;
-		-webkit-transition: color 0.2s ease, border-bottom 0.2s ease;
-		-ms-transition: color 0.2s ease, border-bottom 0.2s ease;
-		transition: color 0.2s ease, border-bottom 0.2s ease;
+        -moz-transition: font-size 0.2s ease;
+        -webkit-transition: font-size 0.2s ease;
+        -ms-transition: font-size 0.2s ease;
+        transition: font-size 0.2s ease;
 		text-decoration: none;
 		border-bottom: dotted 1px;
 		color: inherit;
