@@ -125,7 +125,7 @@
 (function(){
 
     var parallax = document.querySelectorAll("body"),
-        speed = -0.2;
+        speed = -0.25;
   
     window.onscroll = function(){
       [].slice.call(parallax).forEach(function(el,i){
