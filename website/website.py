@@ -58,6 +58,10 @@ def page_not_found(e):
     # note that we set the 500 status explicitly
     return render_template('500.html'), 500
 
+@app.route("/about/")
+def about():
+    return render_template('about.html')
+
 @app.route("/submit/", methods=['POST'])
 @requires_authorization
 def submit():
@@ -149,7 +153,7 @@ def data():
         return render_template("data.html", avatar_url=str(user.avatar_url)+"?size=512", totalmessages=udata["message_total"][str(datetime.date.today())],
                                todaymessages=udata["message_rate"][str(datetime.date.today())], u_profile=udata["users"][user.id], graph_x=x, graph_y=y, graph_z=z, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
     except:
-        return render_template("data.html", avatar_url="/static/data/images/fallbackpfp.png", totalmessages=udata["message_total"][str(datetime.date.today())],
+        return render_template("data.html", avatar_url="/static/images/fallbackpfp.png", totalmessages=udata["message_total"][str(datetime.date.today())],
                                 todaymessages=udata["message_rate"][str(datetime.date.today())], u_profile=udata["users"][user.id], graph_x=x, graph_y=y, graph_z=z, user=user, guilds=guilds_data, num_guilds=len(guilds_data), guild_settings=guild_settings)
         
 if __name__ == "__main__":
