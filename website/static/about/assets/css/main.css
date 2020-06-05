@@ -33,6 +33,10 @@ body {
 	line-height: 1;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 ::-webkit-scrollbar {
     width: 6px !important;
     visibility:hidden;
