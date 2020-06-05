@@ -33,6 +33,30 @@ body {
 	line-height: 1;
 }
 
+::-webkit-scrollbar {
+    width: 6px !important;
+    visibility:hidden;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+}
+
+body:hover::-webkit-scrollbar-thumb {
+    background: #e6ebe6;
+}
+body.scrolling::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:horizontal:hover, 
+::-webkit-scrollbar-thumb:vertical:hover {
+    background: #e6ebe6;
+    visibility:visible;
+}
+::-webkit-scrollbar-thumb:horizontal:active,
+::-webkit-scrollbar-thumb:vertical:active {   
+    background: #e6ebe6;
+    visibility:visible;
+}
+
 .headerdiv{
     background: rgba(255, 255, 255, 0.95);
     border-radius: 4px;
