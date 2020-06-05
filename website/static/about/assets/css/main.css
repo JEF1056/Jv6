@@ -33,13 +33,15 @@ body {
 	line-height: 1;
 }
 
-#headerdiv{
+.headerdiv{
     background: #ffffff;
     border-radius: 4px;
     margin: auto;
     padding-top: 1em;
     padding-bottom: 1em;
+    opacity: 90%;
     width: 50%;
+    color: #414f57;
 }
 
 ol, ul {
