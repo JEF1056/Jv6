@@ -33,10 +33,6 @@ body {
 	line-height: 1;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 ::-webkit-scrollbar {
     width: 6px !important;
     visibility:hidden;
@@ -149,14 +145,10 @@ input, select, textarea {
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
-			-moz-animation: none !important;
-			-webkit-animation: none !important;
-			-ms-animation: none !important;
-			animation: none !important;
-			-moz-transition: none !important;
-			-webkit-transition: none !important;
-			-ms-transition: none !important;
-			transition: none !important;
+            -moz-transition: color 0.2s ease, border-bottom 0.2s ease;
+            -webkit-transition: color 0.2s ease, border-bottom 0.2s ease;
+            -ms-transition: color 0.2s ease, border-bottom 0.2s ease;
+            transition: color 0.2s ease, border-bottom 0.2s ease;
 		}
 
 /* Type */
