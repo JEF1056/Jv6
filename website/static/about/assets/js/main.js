@@ -133,7 +133,8 @@
         var windowYOffset = window.pageYOffset,
             elBackgrounPos = "50% " + (windowYOffset * speed) + "px";
   
-        el.style.backgroundPosition = elBackgrounPos-150;
+        console.log(elBackgrounPos)
+        el.style.backgroundPosition = elBackgrounPos;
   
       });
     };
