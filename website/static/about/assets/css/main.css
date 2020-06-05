@@ -3411,7 +3411,14 @@ input, select, textarea {
 
 		#main input[type="submit"],
 		#main input[type="reset"],
-		#main input[type="button"],
+        #main input[type="button"],
+        
+        #header .button {
+			background-color: transparent;
+			box-shadow: inset 0 0 0 1px #dddddd;
+			color: #636363 !important;
+		}
+
 		#main button,
 		#main .button {
 			background-color: transparent;
