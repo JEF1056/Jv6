@@ -33,6 +33,15 @@ body {
 	line-height: 1;
 }
 
+.headerdiv{
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 4px;
+    margin: auto;
+    padding: 1em, 1em, 1em, 1em;
+    width: 50%;
+    color: #414f57;
+}
+
 ol, ul {
 	list-style: none;
 }
@@ -3077,12 +3086,7 @@ input, select, textarea {
 /* Header */
 
 	#header {
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 4px;
-        margin: auto;
-        padding: 6em, 6em, 6em, 6em;
-        width: 50%;
-        color: #414f57;
+		padding: 5em 5em 1em 5em ;
 		text-align: center;
 	}
 
