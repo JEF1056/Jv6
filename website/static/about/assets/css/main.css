@@ -108,7 +108,7 @@ input, select, textarea {
 		background-repeat: repeat,			no-repeat,			no-repeat;
 		background-size: 100px 100px, cover,				cover;
 		background-position: top left,		center center,		bottom center;
-		background-attachment: scroll;
+		background-attachment: scroll,			scroll,				scroll;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
