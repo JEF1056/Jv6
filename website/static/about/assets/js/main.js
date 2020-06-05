@@ -131,7 +131,7 @@
       [].slice.call(parallax).forEach(function(el,i){
   
         var windowYOffset = window.pageYOffset,
-            elBackgrounPos = "50% " + ((windowYOffset * speed)+100) + "px";
+            elBackgrounPos = "50% " + (windowYOffset * speed) + "px";
   
         console.log(elBackgrounPos)
         el.style.backgroundPosition = elBackgrounPos;
