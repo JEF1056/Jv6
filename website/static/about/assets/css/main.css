@@ -33,17 +33,6 @@ body {
 	line-height: 1;
 }
 
-.headerdiv{
-    background: #ffffff;
-    border-radius: 4px;
-    margin: auto;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    opacity: 90%;
-    width: 50%;
-    color: #414f57;
-}
-
 ol, ul {
 	list-style: none;
 }
@@ -319,19 +308,19 @@ input, select, textarea {
 	}
 
 	input, select, textarea {
-		color: #ffffff;
+		color: #414f57;
 	}
 
 	a:hover {
-		color: #ffffff;
+		color: #414f57;
 	}
 
 	strong, b {
-		color: #ffffff;
+		color: #414f57;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #ffffff;
+		color: #414f57;
 	}
 
 	blockquote {
@@ -3088,7 +3077,12 @@ input, select, textarea {
 /* Header */
 
 	#header {
-		padding: 5em 5em 1em 5em ;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 4px;
+        margin: auto;
+        padding: 6em, 6em, 6em, 6em;
+        width: 50%;
+        color: #414f57;
 		text-align: center;
 	}
 
