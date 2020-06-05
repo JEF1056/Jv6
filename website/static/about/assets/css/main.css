@@ -34,7 +34,10 @@ body {
 }
 
 html {
-    scroll-behavior: smooth;
+    -moz-transition: font-size 0.2s ease;
+    -webkit-transition: font-size 0.2s ease;
+    -ms-transition: font-size 0.2s ease;
+    transition: font-size 0.2s ease;
 }
 
 ::-webkit-scrollbar {
