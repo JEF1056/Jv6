@@ -99,8 +99,12 @@ input, select, textarea {
 	}
 
 	body {
+        -webkit-transform: translateZ(-999px) scale(2);
+        transform: translateZ(-999px) scale(2);
+        z-index: 3;
 		height: 100%;
-		background-color: #ffffff;
+        width: 100%;
+        background-color: #ffffff;
 		background-image: url("../../assets/css/images/overlay.png"), -moz-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("../../assets/css/images/bg.jpg");
 		background-image: url("../../assets/css/images/overlay.png"), -webkit-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("../../assets/css/images/bg.jpg");
 		background-image: url("../../assets/css/images/overlay.png"), -ms-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("../../assets/css/images/bg.jpg");
