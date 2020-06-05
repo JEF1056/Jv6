@@ -61,7 +61,7 @@ body.scrolling::-webkit-scrollbar-thumb,
     background: rgba(255, 255, 255, 0.95);
     border-radius: 4px;
     margin: auto;
-    padding: 4em 3em 1em 3em;
+    padding: 4em 3em 3em 3em;
     width: 50%;
     color: #414f57;
 }
