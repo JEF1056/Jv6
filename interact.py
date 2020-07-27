@@ -344,7 +344,7 @@ async def on_message(message):
         elif message.content.lower() == prefix+"-s":
             history=get_history(message)
             settings=vars(settings)
-            embed= discord.Embed(title="Settings", url="https://jadeai.ml", description="__                                                                                      __\nServer-Side Settings  🔒", color=0x80ff80)
+            embed= discord.Embed(title="Settings ||| Personality_ID: " + str(tokenizer.decode(chain(*personality))), url="https://jadeai.ml", description="__                                                                                      __\nServer-Side Settings  🔒", color=0x80ff80)
             embed.add_field(name="model", value=str(settings["model"]), inline=True)
             embed.add_field(name="model_checkpoint", value=str(settings["model_checkpoint"]), inline=True)
             embed.add_field(name="device", value=str(settings["device"]), inline=True)
@@ -385,7 +385,7 @@ async def on_message(message):
                 "no_sample":{"type":str2bool}, "seed":{"max": float("inf"), "type":int}, "auto_seed":{"type":str2bool}, 
                 "max_history":{"max": 10, "type":int}, "max_length":{"max": 20, "type":int}}
                 if parameter[0] in server:
-                    embed=discord.Embed(title="Settings ||| Personality_ID: " + str(tokenizer.decode(chain(*personality))), description="`"+str(parameter[0])+"` is a server-side setting, and cannot be changed.", color=0x80ff80)
+                    embed=discord.Embed(title="Settings", description="`"+str(parameter[0])+"` is a server-side setting, and cannot be changed.", color=0x80ff80)
                 elif parameter[0] in privledged and user_status==False:
                     embed=discord.Embed(title="Settings", description="`"+str(parameter[0])+"` is a supporter-only setting. [vote for Jade on top.gg](https://top.gg/bot/410253782828449802/vote)", color=0x80ff80)
                 elif (parameter[0] in client_side) or parameter[0] in privledged and user_status==True:
