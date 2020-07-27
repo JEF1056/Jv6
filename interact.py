@@ -195,6 +195,7 @@ try:
         model.to(args.device)
         add_special_tokens_(model, tokenizer)
 
+        global personality, personalities
         personalities = pickle.load(open(os.path.join(args.model_checkpoint, "versions.p"), "rb"))
         personality = random.choice(personalities)
         print("Selected personality:", tokenizer.decode(chain(*personality)))
@@ -283,7 +284,7 @@ async def on_message(message):
         embed=discord.Embed(title="DM integration", url="https://www.notion.so/jadeai/1c0f1d42eb6345b58013a1be35e47793?v=d45f7f3d26e140c995f8a9021564bb99", description="Dms are not supported yet! when they are, they will require a upvote on top.gg and a confimed server referral to a server with 10+ non-bot members", color=0x80ff80)
         await message.channel.send(embed=embed)
     elif message.author.bot == False:
-        global personality, tokenizer, model, client, t1, settings, history,user_version
+        global personality, personalities, tokenizer, model, client, t1, settings, history,user_version
         if message.content.lower().startswith(prefix):
             history=[]
             settings=args1
@@ -417,7 +418,7 @@ async def on_message(message):
                 try:
                     settings=vars(settings)
                     webhook = DiscordWebhook(url=config["logchannel"], avatar_url=str(message.guild.icon_url), username=str(message.guild.name))
-                    embed= DiscordEmbed(title="Settings", description="__                                                                                      __", color=0x80ff80)
+                    embed= DiscordEmbed(title="Settings ||| Personality_ID: " + str(tokenizer.decode(chain(*personality))), description="__                                                                                      __", color=0x80ff80)
                     embed.add_embed_field(name="model", value=str(settings["model"]))
                     embed.add_embed_field(name="model_checkpoint", value=str(settings["model_checkpoint"]))
                     embed.add_embed_field(name="device", value=str(settings["device"]))
@@ -485,8 +486,12 @@ async def on_message(message):
                 history.append(out_ids)
                 history = history[-(2*args.max_history+1):]
                 if len(get_history(message).replace("> ","").split("\n")) >=4:
-                    if avg_similarity(settings.max_history,get_history(message).replace("> ","").split("\n")) >= 0.3 and settings.auto_seed == True:
-                        settings.seed=random.randint(0,9999999999)
+                    sim=avg_similarity(settings.max_history,get_history(message).replace("> ","").split("\n"))
+                    if settings.auto_seed == True:
+                        if sim >= 0.3:
+                            settings.seed=random.randint(0,9999999999)
+                        elif sim >= 0.75:
+                            personality = random.choice(personalities)
                 pickle.dump({"t1":round(time.time()),"settings":settings,"history":history,"user_version":current_version}, open("hist/"+str(message.guild.id)+".p", "wb"))
                 user_data["message_count"]+=1
                 user_data["timestamp"]=round(time.time())
