@@ -132,8 +132,7 @@
   
         var windowYOffset = window.pageYOffset,
             elBackgrounPos = "50% " + (windowYOffset * speed) + "px";
-  
-        console.log(elBackgrounPos)
+
         el.style.backgroundPosition = elBackgrounPos;
   
       });
