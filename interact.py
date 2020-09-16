@@ -264,7 +264,7 @@ async def on_ready():
     global personality, tokenizer, model, dbli
     print('Logged in as '+client.user.name+' (ID:'+str(client.user.id)+') | Connected to '+str(len(client.guilds))+' servers | Connected to '+ str(len(set(client.get_all_members()))) +' users')
     print('--------')
-    print("Discord.py verison: " + discord.__version__ + "Shards: " + client.shard_count)
+    print("Discord.py verison: " + discord.__version__ + "Shards: " + str(client.shard_count))
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="everyone talk ✨✨"))
     update_guilds.start()
 
