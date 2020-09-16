@@ -230,8 +230,6 @@ async def update_guilds():
     global dbli, client
     print("Posting a guild count of " + str(len(client.guilds)))
     await dbli.post_guild_count()
-    requests.post("https://bots.ondiscord.xyz/bot-api/bots/410253782828449802/guilds", data = 'Authorization: '+config["botsondiscord"]+'\nContent-Type: application/json\n{"guildCount": '+str(len(client.guilds))+'}')
-    requests.post("https://discord.bots.gg/api/v1/bots/410253782828449802/stats", data = 'Authorization: '+config["dbots.gg"]+'\nContent-Type: application/json\n{"guildCount": '+str(len(client.guilds))+'}')
 
 @client.event
 async def on_guild_join(guild):
@@ -266,7 +264,7 @@ async def on_ready():
     global personality, tokenizer, model, dbli
     print('Logged in as '+client.user.name+' (ID:'+str(client.user.id)+') | Connected to '+str(len(client.guilds))+' servers | Connected to '+ str(len(set(client.get_all_members()))) +' users')
     print('--------')
-    print("Discord.py verison: " + discord.__version__)
+    print("Discord.py verison: " + discord.__version__ + "Shards: " + client.shard_count)
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="everyone talk ✨✨"))
     update_guilds.start()
 
