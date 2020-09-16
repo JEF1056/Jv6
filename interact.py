@@ -13,7 +13,7 @@ from discord.ext.tasks import loop
 import json, build_versions
 
 global client, config
-client = discord.Client()
+client = discord.AutoShardedClient()
 SPECIAL_TOKENS = ["<bos>", "<eos>", "<speaker1>", "<speaker2>", "<pad>"]
 ATTR_TO_SPECIAL_TOKEN = {'bos_token': '<bos>', 'eos_token': '<eos>', 'pad_token': '<pad>',
                          'additional_special_tokens': ['<speaker1>', '<speaker2>']}
