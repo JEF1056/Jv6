@@ -58,7 +58,7 @@ f | `idk...` | `N/A` | Colab is weird ok
 - (Preffered) 25 + GB of ram
   - <span style="color:red">WARNING!!</span> Large datasets (> 200 mb formatted datasets) may require mare than 25GB of ram during tokenization.
   - The pretrained model took ~45GB of ram to train
-- (Reccomended) 30gb of storage
+- (Recommended) 30gb of storage
 
 #### Instructions
 See the [README.md](train/README.md) in the train folder to see all the possible arguments for thr training script.
