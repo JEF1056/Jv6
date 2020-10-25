@@ -6,14 +6,14 @@ Jade is a contextual chatbot, using OpenAI's GPT-2 transformer model to generate
 ## Usage
 ### To deploy, it's rather simple.
 #### Requirements
-- Python 3+
-- Pip 3
+- Python 3.x.x+
+- Python 3.x.x+ Pip
 - 1 vCPU (more cores doesn't matter, but high single-core preformance does)
-- 1.25GB or more of RAM
+- 1.25+ GB of RAM
 - ~10GB of storage
 #### Instructions
 1. Download the [pretrained model](haha-i-havent-uploaded-it-yet) or [train your own](#train)
-2. Run `pip3 install -r reqirements.txt` in this folder
+2. Run `python3 -m pip install -r reqirements.txt` in this folder
 3. Create a `config.json` file based on `config_example.json`
 4. run `interact.py`
 
@@ -50,14 +50,14 @@ f | `idk...` | `N/A` | Colab is weird ok
 ### Training is a bit more difficult.
 #### Requirements
 
-- Python 3+
-- Pip 3
+- Python 3.x.x+
+- Python 3.x.x+ Pip
 - (Preferred) a server with GPU functionality. (Multi-GPU setups are supported!)
   - A single Tesla T4 will take ~12 hours to finetune the model, wouthout FP16. The formatted dataset size was ~400mb. See the dataset format [here](train/formatting/example_data.json)
   - FP16 will reduce the vram usage and increase the speed of the model training. Depending on your hardware configuration, your results may vary.
-- (Preffered) 25 + GB of ram
+- (Preffered) 25+ GB of RAM
   - <span style="color:red">WARNING!!</span> Large datasets (> 200 mb formatted datasets) may require mare than 25GB of ram during tokenization.
-  - The pretrained model took ~45GB of ram to train
+  - The pretrained model took ~45GB of RAM to train
 - (Recommended) 30gb of storage
 
 #### Instructions
@@ -85,6 +85,6 @@ There's a bit more to make the completed model compatable with `interact.py`.
 Unfortunately, I need to re-code this part, but I'll have it uploaded soon!
 
 (if you want to do it yourself)
-1. read the tokenizer file and use it to tokenize the personalities in your detaset file
-2. save the tokenized personalities in a list
-3. use pickle to save the list to `versions.p` in the model folder
+1. Read the tokenizer file and use it to tokenize the personalities in your detaset file.
+2. Save the tokenized personalities in a list.
+3. Use pickle to save the list to `versions.p` in the model folder.
