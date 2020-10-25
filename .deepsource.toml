@@ -1,0 +1,19 @@
+version = 1
+
+test_patterns = [
+    "*.py",
+    "train/*.py",
+    "train/formatting/*.py",
+    "website/*.py"
+]
+
+[[analyzers]]
+name = "python"
+enabled = true
+
+  [analyzers.meta]
+  runtime_version = "3.x.x"
+
+[[transformers]]
+name = "autopep8"
+enabled = true
