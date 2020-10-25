@@ -4,7 +4,6 @@ from waitress import serve
 import json, dbl, discord
 import pickle, random
 import os
-import plotly.express as px
 import datetime
 
 app = Flask(__name__)
