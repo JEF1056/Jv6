@@ -12,7 +12,6 @@ from datetime import date
 from discord.ext.tasks import loop
 import json, build_versions
 
-global client, config
 client = discord.Client()
 SPECIAL_TOKENS = ["<bos>", "<eos>", "<speaker1>", "<speaker2>", "<pad>"]
 ATTR_TO_SPECIAL_TOKEN = {'bos_token': '<bos>', 'eos_token': '<eos>', 'pad_token': '<pad>',
@@ -221,7 +220,6 @@ def get_history(message):
         print(e)
         return "No History!"
 
-global dbli
 dbli=dbl.DBLClient(client, config["dbltoken"])
 
 @loop(seconds=1800)
@@ -271,7 +269,7 @@ async def on_ready():
 
 prefix=config["prefix"]
 current_version=1
-global t1, settings, history,user_version
+
 try:
     udata=pickle.load(open("hist/user/users.p", "rb"))
 except:
