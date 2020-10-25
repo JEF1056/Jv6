@@ -13,7 +13,6 @@ with open('../config.json') as json_file:
     config = config_0["website"]    
 
 app.secret_key = config["secret_key"]
-global dbli, cached_history
 client = discord.Client()
 dbli=dbl.DBLClient(client, config_0["dbltoken"])
 cached_history=pickle.load(open("../hist/user/users.p", "rb"))["message_rate"]
