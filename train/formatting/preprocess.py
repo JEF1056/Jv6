@@ -74,8 +74,7 @@ for partition in trange(0,len(processed)-1600,80):
         canvas["candidates"].append(processed_ext[random.randint(0,len(processed_ext)-1)])
     canvas["candidates"].append(processed[i+1])
     st = (i-9)
-    if st < 0:
-      st=0
+    st = max(st, 0)
     canvas["history"]=processed[st:i+1]
     template["utterances"].append(canvas)
   data["train"].append(template)
@@ -90,8 +89,7 @@ for part in trange(len(processed)-1600,len(processed)-81,80):
         canvas["candidates"].append(processed_ext[random.randint(0,len(processed_ext)-1)])
     canvas["candidates"].append(processed[i+1])
     st = (i-9)
-    if st < 0:
-      st=0
+    st = max(st, 0)
     canvas["history"]=processed[st:i+1]
     template["utterances"].append(canvas)
   data["valid"].append(template)
