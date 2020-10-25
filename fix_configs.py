@@ -1,5 +1,5 @@
-import os, pickle, time
-import datetime
+import os, pickle
+
 for path in os.listdir("hist"):
     try:
         data = pickle.load(open(os.path.join("hist",path),"rb"))
